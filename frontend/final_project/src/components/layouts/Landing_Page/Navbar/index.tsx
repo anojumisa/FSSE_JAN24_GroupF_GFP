@@ -1,20 +1,20 @@
 export default function Navbar() {
     return (
-        <>
+        <div className="flex justify-between ">
             <div>
                 <div>Logo</div>
             </div>
-            <div>
-                <h1>Home</h1>
-                <h1>About</h1>
-                <h1>Browse</h1>
-                <h1>Contact</h1>
-                <h1>Become Seller</h1>
+            <div className="flex gap-4">
+                <div>Home</div>
+                <div>About</div>
+                <div>Browse</div>
+                <div>Contact</div>
+                <div>Become Seller</div>
             </div>
-            <div>
-                <h1>Sign In</h1>
-                <h1>Register</h1>
+            <div className="flex gap-4">
+                <div>Log In</div>
+                <div>Register</div>
             </div>
-        </>
+        </div>
     )
 }

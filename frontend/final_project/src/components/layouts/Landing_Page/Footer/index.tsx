@@ -4,7 +4,7 @@ export default function Footer() {
 			<footer className="bg-white lg:grid lg:grid-cols-5">
 				<div className="relative block h-32 lg:col-span-2 lg:h-full">
 					<img
-						src="https://images.unsplash.com/photo-1642370324100-324b21fab3a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1548&q=80"
+						src="landing_page/carbon_neutral.jpg"
 						alt=""
 						className="absolute inset-0 h-full w-full object-cover"
 					/>
@@ -16,21 +16,18 @@ export default function Footer() {
 							<p>
 								<span className="text-xs uppercase tracking-wide text-gray-500">
 									{" "}
-									Call us{" "}
+									LocalBites{" "}
 								</span>
 
 								<a
 									href="#"
 									className="block text-2xl font-medium text-gray-900 hover:opacity-75 sm:text-3xl"
 								>
-									0123456789
+									Find us on Social Media
 								</a>
 							</p>
 
-							<ul className="mt-8 space-y-1 text-sm text-gray-700">
-								<li>Monday to Friday: 10am - 5pm</li>
-								<li>Weekend: 10am - 3pm</li>
-							</ul>
+						
 
 							<ul className="mt-8 flex gap-6">
 								<li>
@@ -162,7 +159,7 @@ export default function Footer() {
 											className="text-gray-700 transition hover:opacity-75"
 										>
 											{" "}
-											1on1 Coaching{" "}
+											Local Delicacies{" "}
 										</a>
 									</li>
 
@@ -172,7 +169,7 @@ export default function Footer() {
 											className="text-gray-700 transition hover:opacity-75"
 										>
 											{" "}
-											Company Review{" "}
+											Local Store{" "}
 										</a>
 									</li>
 
@@ -182,7 +179,7 @@ export default function Footer() {
 											className="text-gray-700 transition hover:opacity-75"
 										>
 											{" "}
-											Accounts Review{" "}
+											Review{" "}
 										</a>
 									</li>
 
@@ -192,7 +189,7 @@ export default function Footer() {
 											className="text-gray-700 transition hover:opacity-75"
 										>
 											{" "}
-											HR Consulting{" "}
+											Our Green Efforts{" "}
 										</a>
 									</li>
 
@@ -202,7 +199,7 @@ export default function Footer() {
 											className="text-gray-700 transition hover:opacity-75"
 										>
 											{" "}
-											SEO Optimisation{" "}
+											Save the Planet{" "}
 										</a>
 									</li>
 								</ul>
@@ -232,15 +229,7 @@ export default function Footer() {
 										</a>
 									</li>
 
-									<li>
-										<a
-											href="#"
-											className="text-gray-700 transition hover:opacity-75"
-										>
-											{" "}
-											Accounts Review{" "}
-										</a>
-									</li>
+									
 								</ul>
 							</div>
 						</div>
@@ -272,7 +261,7 @@ export default function Footer() {
 							</ul>
 
 							<p className="mt-8 text-xs text-gray-500 sm:mt-0">
-								&copy; 2022. Company Name. All rights reserved.
+								&copy; 2024 LocalBites. All rights reserved.
 							</p>
 						</div>
 					</div>

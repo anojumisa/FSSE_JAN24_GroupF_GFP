@@ -6,7 +6,7 @@ interface DividerSectionProps {
 
 export default function DividerSection({lineOne, lineTwo, lineThree}: DividerSectionProps) {
     return (
-        <div className="bg-amber-500 py-20">
+        <div className="bg-amber-400 py-20">
 				<div className="max-w-screen-lg mx-auto flex justify-between items-center">
 					<div className="max-w-xl">
 						<h2 className="font-black text-green-900 text-3xl mb-4">

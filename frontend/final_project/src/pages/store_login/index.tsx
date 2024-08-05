@@ -24,12 +24,15 @@ export default function LoginSeller() {
   async function handleSubmit(values: LoginForm, { setSubmitting, setFieldError }: any) {
 
     try {
+      console.log('Sending request to backend with values:', values);
+
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/store_login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(values),
+        credentials: 'include',
       });
 
       if (!response.ok) {

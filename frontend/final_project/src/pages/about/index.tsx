@@ -66,19 +66,19 @@ export default function About() {
 				name="Ano Jumisa"
 				role="Project Lead & Software Engineer"
 				description="Meet Ano, the visionary behind LocalBites' digital infrastructure. Ano is passionate about sustainable technology and believes that software can be a force for good. His code is as clean and efficient as a pristine forest. He's the one who ensures that every line of code contributes to a smaller digital footprint, optimizing performance to reduce energy consumption. Ano's dream is to create a platform that not only connects people with delicious treats but also minimizes the environmental impact of online commerce."
-				image="/about/bicycle_delivery.png"
+				image="/Ano.png"
 			/>
 			<ProfileSectionRight
 				name="Fachmi Nur Julianto"
 				role="Software Engineer"
 				description="Fachmi is a numbers wizard with a heart for the planet. His analytical mind is constantly calculating ways to make LocalBites more efficient and eco-friendly. From optimizing delivery routes to minimizing data storage, Ben is always on the lookout for opportunities to reduce waste. He's like a sustainability detective, uncovering hidden inefficiencies and turning them into green gold. Ben's goal is to create a system that not only delights customers but also respects the Earth's resources."
-				image="/about/bicycle_delivery.png"
+				image="/Fachmi.png"
 			/>
 			<ProfileSectionLeft
 				name="Mutiara Nafysah"
 				role="Software Engineer"
 				description="Mutiara is a coding alchemist, transforming complex problems into elegant solutions. Inspired by the intricate patterns found in nature, Mutiara's code is both beautiful and functional. She believes that technology should mimic the harmony found in ecosystems. Mutiara is the guardian of LocalBites' user experience, ensuring that every interaction is as smooth and intuitive as a gentle breeze. Her ultimate aim is to create a digital experience that is not only enjoyable but also leaves a positive impact on the user and the planet."
-				image="/about/bicycle_delivery.png"
+				image="/mutiara.png"
 			/>
 			<Footer />
 		</>

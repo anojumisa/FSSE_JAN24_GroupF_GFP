@@ -16,7 +16,7 @@ export default function SearchBar({search}: SearchBarProps) {
 					/>
 					<button
 						type="submit"
-						className="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-green-700 rounded-e-lg border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+						className="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-amber-400 rounded-e-lg border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-amber-400 dark:hover:bg-amber-500 dark:focus:ring-green-800"
 					>
 						<svg
 							className="w-4 h-4"

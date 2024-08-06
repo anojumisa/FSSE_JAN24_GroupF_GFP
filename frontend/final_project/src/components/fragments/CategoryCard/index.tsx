@@ -1,6 +1,6 @@
 export default function CategoryCard() {
 	return (
-		<div className="mx-auto my-8 bg-gray-800 p-8 text-white sm:max-w-lg sm:rounded-xl md:py-16 lg:mx-0 lg:max-w-xs">
+		<div className="mx-auto my-8 bg-black p-8 text-white sm:max-w-lg sm:rounded-xl md:py-16 lg:mx-0 lg:max-w-xs">
 			<h2 className="mb-6 max-w-lg text-3xl font-bold sm:text-4xl">
 				Craving for Brownies?
 			</h2>
@@ -10,7 +10,7 @@ export default function CategoryCard() {
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 24 24"
 						fill="currentColor"
-						className="shrink-0 h-6 w-6 text-green-300"
+						className="shrink-0 h-6 w-6 text-green-500"
 					>
 						<path
 							fill-rule="evenodd"
@@ -23,7 +23,7 @@ export default function CategoryCard() {
 				
 				
 			</ul>
-			<button className="focus:outline-4 rounded-xl bg-emerald-400 px-4 py-3 font-medium text-white shadow-md outline-white transition hover:bg-emerald-500">
+			<button className="focus:outline-4 rounded-xl bg-amber-400 px-4 py-3 font-medium text-black shadow-md outline-white transition hover:bg-amber-500">
 				Find Brownies nearby!
 			</button>
 		</div>

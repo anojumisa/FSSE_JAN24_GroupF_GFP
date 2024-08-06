@@ -22,7 +22,7 @@ export default function GreenMovement_right({
 	return (
 		<div className="py-4 relative overflow-hidden bg-white ">
 			<div className="grid grid-cols-2 max-w-screen-lg mx-auto">
-				<div className="py-20 bg-amber-500 relative before:absolute before:h-full before:w-screen before:bg-amber-500 before:top-0 before:right-0">
+				<div className="py-20 bg-amber-500 relative before:absolute before:h-full before:w-screen before:bg-amber-300 before:top-0 before:right-0">
 					<div className="relative z-20 pl-12 ">
 						<h2 className="text-blue-950 font-black text-5xl leading-snug mb-10">
 							{title}

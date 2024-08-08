@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
 	return (
 		<div>
@@ -210,18 +212,18 @@ export default function Footer() {
 
 								<ul className="mt-6 space-y-4 text-sm">
 									<li>
-										<a
-											href="#"
+										<Link
+											href="/about"
 											className="text-gray-700 transition hover:opacity-75"
 										>
 											{" "}
 											About{" "}
-										</a>
+										</Link>
 									</li>
 
 									<li>
 										<a
-											href="#"
+											href="#meet-the-team"
 											className="text-gray-700 transition hover:opacity-75"
 										>
 											{" "}

@@ -6,10 +6,12 @@ import GreenMovement_left from "@/components/layouts/About_Page/GreenMovement_le
 import ProfileSectionLeft from "@/components/layouts/About_Page/ProfileSection_left";
 import ProfileSectionRight from "@/components/layouts/About_Page/ProfileSection_right";
 import Footer from "@/components/layouts/Landing_Page/Footer";
+import MiniNavbar from "@/components/layouts/About_Page/MiniNavbar";
 
 export default function About() {
 	return (
 		<>
+			<MiniNavbar />
 			<TopSection />
 			<DividerSection
 				lineOne="LocalBites is more than just a marketplace."
@@ -31,7 +33,7 @@ export default function About() {
 				description="Create a platform to showcase the stories of the artisans behind the products. This humanizes the brand and builds emotional connections with customers."
 				movement="Discover the heart behind the flavor."
 				image="/about/shopping.png"
-                checklist_one="Artisan Profiles: Create detailed profiles for each artisan, including their story, passion, and the inspiration behind their creations."
+				checklist_one="Artisan Profiles: Create detailed profiles for each artisan, including their story, passion, and the inspiration behind their creations."
 				checklist_two="Behind-the-Scenes Content: Share videos, photos, and blog posts that showcase the artisan's craft and the process of making their products."
 				checklist_three="Live Q&A Sessions: Host live Q&A sessions with artisans to foster direct interaction with customers."
 				checklist_four="Limited Edition Collaborations: Partner with artisans on exclusive, limited-edition products to create a sense of urgency and exclusivity."
@@ -41,7 +43,7 @@ export default function About() {
 				description="Emphasize that choosing LocalBites is a conscious decision to live a more sustainable life. Explore partnerships with environmental organizations to reinforce the brand's commitment."
 				movement="Indulge your taste buds, nourish the planet."
 				image="/about/bicycle_delivery.png"
-                checklist_one="Transparent Supply Chain: Clearly communicate the brand's commitment to sustainable sourcing and production practices."
+				checklist_one="Transparent Supply Chain: Clearly communicate the brand's commitment to sustainable sourcing and production practices."
 				checklist_two="Eco-Friendly Packaging: Invest in innovative, eco-friendly packaging materials and designs."
 				checklist_three="Carbon Offset Initiatives: Partner with carbon offset programs to neutralize the environmental impact of shipping."
 				checklist_four="Educational Content: Share informative articles and blog posts about sustainable living and the importance of reducing food waste."
@@ -51,17 +53,19 @@ export default function About() {
 				description="Foster a sense of community among LocalBites customers by creating online forums or social media groups where they can share their experiences and recommendations."
 				movement="Share the joy, savor the taste."
 				image="/about/sustainability.png"
-                checklist_one="Online Forums: Create a platform for customers to share their experiences, ask questions, and connect with other food lovers."
+				checklist_one="Online Forums: Create a platform for customers to share their experiences, ask questions, and connect with other food lovers."
 				checklist_two="Social Media Engagement: Encourage user-generated content by running contests, challenges, and giveaways."
 				checklist_three="Loyalty Programs: Reward repeat customers with exclusive perks and early access to new products."
 				checklist_four="Local Events: Organize food festivals, cooking classes, and pop-up shops to bring the LocalBites community together offline."
 			/>
 
+			<div id="meet-the-team"></div>
 			<DividerSectionShort
 				lineOne="Let's meet the Team"
 				lineTwo=""
 				lineThree=""
 			/>
+
 			<ProfileSectionLeft
 				name="Ano Jumisa"
 				role="Project Lead & Software Engineer"

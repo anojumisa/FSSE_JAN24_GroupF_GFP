@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import router from 'next/router';
 
 interface LoginValues {
   email: string;
@@ -18,8 +19,32 @@ const Login = () => {
     password: '',
   };
 
-  const handleSubmit = (values: LoginValues) => {
-    console.log('Login data', values);
+  async function handleSubmit(values: LoginValues, { setSubmitting, setFieldError }: any) {
+
+    try {
+      console.log('Sending request to backend with values:', values);
+
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+        credentials: 'include',
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        setFieldError('general', errorData.message || 'Failed to login');
+        return;
+      }
+      alert('Login Successful');
+      router.push('/');
+    } catch (error) {
+      setFieldError('general', (error as Error).message);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (

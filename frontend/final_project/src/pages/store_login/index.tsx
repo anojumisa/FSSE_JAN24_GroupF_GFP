@@ -28,6 +28,7 @@ export default function LoginSeller() {
 
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/store_login`, {
         method: 'POST',
+        mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -41,7 +42,7 @@ export default function LoginSeller() {
         return;
       }
       alert('Login Successful');
-      router.push('/');
+      router.push('/dashboard_seller');
     } catch (error) {
       setFieldError('general', (error as Error).message);
     } finally {

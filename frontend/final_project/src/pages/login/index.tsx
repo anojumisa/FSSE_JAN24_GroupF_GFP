@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import router from 'next/router';
+import { useRouter } from 'next/router';
 
 interface LoginValues {
   email: string;
@@ -14,18 +14,19 @@ const validationSchema = Yup.object({
 });
 
 const Login = () => {
+  const router = useRouter();
   const initialValues: LoginValues = {
     email: '',
     password: '',
   };
 
   async function handleSubmit(values: LoginValues, { setSubmitting, setFieldError }: any) {
-
     try {
       console.log('Sending request to backend with values:', values);
 
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
         method: 'POST',
+        mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -33,19 +34,24 @@ const Login = () => {
         credentials: 'include',
       });
 
+      console.log('Response status:', response.status);
+
       if (!response.ok) {
         const errorData = await response.json();
+        console.error('Error response from backend:', errorData);
         setFieldError('general', errorData.message || 'Failed to login');
         return;
       }
+
       alert('Login Successful');
       router.push('/');
     } catch (error) {
+      console.error('Error during fetch:', error);
       setFieldError('general', (error as Error).message);
     } finally {
       setSubmitting(false);
     }
-  };
+  }
 
   return (
     <div className="py-16">

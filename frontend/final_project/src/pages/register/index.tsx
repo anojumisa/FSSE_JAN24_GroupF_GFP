@@ -67,6 +67,7 @@ export default function Register() {
 
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/register`, {
         method: 'POST',
+        mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
         },

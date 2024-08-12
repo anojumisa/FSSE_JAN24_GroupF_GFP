@@ -79,6 +79,7 @@ export default function MultiStepForm() {
       
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/store_register`, {
               method: 'POST',
+              mode: 'cors',
               headers: {
                 'Content-Type': 'application/json',
               },

@@ -44,7 +44,7 @@ const Login = () => {
       }
 
       alert('Login Successful');
-      router.push('/');
+      router.push('/dashboard_user');
     } catch (error) {
       console.error('Error during fetch:', error);
       setFieldError('general', (error as Error).message);

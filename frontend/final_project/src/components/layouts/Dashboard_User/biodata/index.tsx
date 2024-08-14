@@ -1,9 +1,14 @@
-import React from 'react';
+import { User } from '../../../../../types/user';
 
-const Biodata = () => (
-  <div className="flex justify-between items-center bg-gray-100 p-4 rounded">
-    <div className="text-lg font-bold cursor-pointer text-red-500">Biodata</div>
-    <div className="text-red-500 cursor-pointer">History</div>
+interface BiodataProps {
+  user: User;
+}
+
+const Biodata: React.FC<BiodataProps> = ({ user }) => (
+  <div>
+    <h2>{user.first_name} {user.last_name}</h2>
+    <p>Email: {user.email}</p>
+    <p>Address: {user.address}, {user.city}, {user.state}, {user.zip_code}</p>
   </div>
 );
 

@@ -3,6 +3,7 @@ import Sidebar from '../../components/layouts/Dashboard_User/sidebar';
 import Notification from '../../components/layouts/Dashboard_User/notification';
 import Biodata from '../../components/layouts/Dashboard_User/biodata';
 import TransactionList from '../../components/layouts/Dashboard_User/transaction';
+import LogoutButton from '@/components/elements/logoutbutton';
 
 const Dashboard = () => (
   <div className="flex">
@@ -10,6 +11,8 @@ const Dashboard = () => (
     <div className="flex-1 p-6">
       <div className="flex justify-between mb-6">
         <Notification />
+        {}
+        <LogoutButton />
       </div>
       <div className="mb-6">
         <Biodata />

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import router from 'next/router';
+import { useRouter } from 'next/router';
 
 interface LoginValues {
   email: string;
@@ -14,6 +14,7 @@ const validationSchema = Yup.object({
 });
 
 const Login = () => {
+  const router = useRouter();
   const initialValues: LoginValues = {
     email: '',
     password: '',
@@ -21,31 +22,42 @@ const Login = () => {
 
   async function handleSubmit(values: LoginValues, { setSubmitting, setFieldError }: any) {
 
-    try {
-      console.log('Sending request to backend with values:', values);
-
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(values),
-        credentials: 'include',
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        setFieldError('general', errorData.message || 'Failed to login');
-        return;
+      try {
+        console.log('Sending request to backend with values:', values);
+  
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
+          method: 'POST',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(values),
+          credentials: 'include',
+        });
+  
+        const data = await response.json();
+        if (!response.ok) {
+          setFieldError('general', data.message || 'Failed to login');
+          return;
+        }
+  
+        const token = data.access_token;
+        console.log("Token:", token);
+        localStorage.setItem('token', data.token);
+  
+        if (token) {
+          localStorage.setItem('token', token);
+          router.push('/Dashboard_User');
+        } else {
+          setFieldError('general', 'Token is missing in response');
+        }      
+  
+      } catch (error) {
+        setFieldError('general', (error as Error).message);
+      } finally {
+        setSubmitting(false);
       }
-      alert('Login Successful');
-      router.push('/');
-    } catch (error) {
-      setFieldError('general', (error as Error).message);
-    } finally {
-      setSubmitting(false);
-    }
-  };
+    };
 
   return (
     <div className="py-16">

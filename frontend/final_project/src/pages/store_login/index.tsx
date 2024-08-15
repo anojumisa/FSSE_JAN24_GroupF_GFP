@@ -17,8 +17,7 @@ export default function LoginSeller() {
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email format').required('Email required'),
-    password_hash: Yup.string().required('Password required').
-    matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,'Password must contain at least 8 characters, one uppercase letter, one lowercase letter, and one number')
+    password_hash: Yup.string().min(6, 'Password must be at least 6 characters').required('Required'),    
   });  
 
   async function handleSubmit(values: LoginForm, { setSubmitting, setFieldError }: any) {
@@ -28,6 +27,7 @@ export default function LoginSeller() {
 
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/store_login`, {
         method: 'POST',
+        mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -35,13 +35,23 @@ export default function LoginSeller() {
         credentials: 'include',
       });
 
+      const data = await response.json();
       if (!response.ok) {
-        const errorData = await response.json();
-        setFieldError('general', errorData.message || 'Failed to login');
+        setFieldError('general', data.message || 'Failed to login');
         return;
       }
-      alert('Login Successful');
-      router.push('/');
+
+      const token = data.access_token;
+      console.log("Token:", token);
+      localStorage.setItem('token', data.token);
+
+      if (token) {
+        localStorage.setItem('token', token);
+        router.push('/dashboard_seller');
+      } else {
+        setFieldError('general', 'Token is missing in response');
+      }      
+
     } catch (error) {
       setFieldError('general', (error as Error).message);
     } finally {

@@ -9,6 +9,7 @@ import ProductOverview from '../../components/layouts/Dashboard_Seller/ProductOv
 import Orders from '../../components/layouts/Dashboard_Seller/Orders';
 import Earnings from '../../components/layouts/Dashboard_Seller/Earnings';
 import NewReview from '../../components/layouts/Dashboard_Seller/NewReview';
+import LogoutButton from '@/components/elements/logoutbutton';
 
 const Dashboard = () => (
   <div className="flex">
@@ -17,6 +18,8 @@ const Dashboard = () => (
       <div className="flex justify-between mb-6">
         <TopButtons />
         <Notification />
+        {}
+        <LogoutButton />        
       </div>
       <div className="grid grid-cols-2 gap-6">
         <RecentOrder />

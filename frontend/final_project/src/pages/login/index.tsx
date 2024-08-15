@@ -21,37 +21,43 @@ const Login = () => {
   };
 
   async function handleSubmit(values: LoginValues, { setSubmitting, setFieldError }: any) {
-    try {
-      console.log('Sending request to backend with values:', values);
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(values),
-        credentials: 'include',
-      });
-
-      console.log('Response status:', response.status);
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error('Error response from backend:', errorData);
-        setFieldError('general', errorData.message || 'Failed to login');
-        return;
+      try {
+        console.log('Sending request to backend with values:', values);
+  
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
+          method: 'POST',
+          mode: 'cors',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(values),
+          credentials: 'include',
+        });
+  
+        const data = await response.json();
+        if (!response.ok) {
+          setFieldError('general', data.message || 'Failed to login');
+          return;
+        }
+  
+        const token = data.access_token;
+        console.log("Token:", token);
+        localStorage.setItem('token', data.token);
+  
+        if (token) {
+          localStorage.setItem('token', token);
+          router.push('/Dashboard_User');
+        } else {
+          setFieldError('general', 'Token is missing in response');
+        }      
+  
+      } catch (error) {
+        setFieldError('general', (error as Error).message);
+      } finally {
+        setSubmitting(false);
       }
-
-      alert('Login Successful');
-      router.push('/dashboard_user');
-    } catch (error) {
-      console.error('Error during fetch:', error);
-      setFieldError('general', (error as Error).message);
-    } finally {
-      setSubmitting(false);
-    }
-  }
+    };
 
   return (
     <div className="py-16">

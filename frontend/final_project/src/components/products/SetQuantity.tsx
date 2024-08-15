@@ -1,4 +1,4 @@
-import { CartProductType } from "@/pages/product/ProductDetails";
+import { CartProductType } from "@/pages/product/[productId]/ProductDetails";
 import React from "react";
 
 interface SetQtqProps{

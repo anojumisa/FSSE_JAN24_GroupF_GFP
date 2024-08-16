@@ -6,21 +6,26 @@ const LogoutButton = () => {
 
   const handleLogout = async () => {
     try {
-      const token = localStorage.getItem('token');
-      
+      const token = localStorage.getItem('access_token'); // Adjusted key to 'access_token'
+
+      if (!token) {
+        router.push('/login'); // Redirect if token doesn't exist
+        return;
+      }
+
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/logout`, {
         method: 'POST',
         mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,  // Include the token in the Authorization header
+          'Authorization': `Bearer ${token}`,
         },
         credentials: 'include',
       });
 
       if (response.ok) {
-        localStorage.removeItem('token');
-        router.push('/');
+        localStorage.removeItem('access_token'); // Clear the token from local storage
+        router.push('/login'); // Redirect to login page after logout
       } else {
         console.error('Logout failed');
       }

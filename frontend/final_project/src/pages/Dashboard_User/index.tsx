@@ -67,8 +67,7 @@ const Dashboard: React.FC = () => {
       <Sidebar />
       <div className="flex-1 p-6">
         <div className="flex justify-between mb-6">
-          <Notification />
-          {}
+          <Notification username={userData.user.first_name} /> {/* Pass first_name */}
           <LogoutButton />
         </div>
         <div className="mb-6">

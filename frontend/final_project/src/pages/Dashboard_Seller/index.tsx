@@ -89,7 +89,7 @@ const Dashboard = () => {
       <div className="flex-1 p-6">
         <div className="flex justify-between mb-6">
           <TopButtons />
-          <Notification />
+          <Notification storeName={storeInfo?.store_name || 'Your Store'} />
           <LogoutButton />
         </div>
         <div className="grid grid-cols-2 gap-6">

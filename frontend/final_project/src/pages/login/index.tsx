@@ -24,18 +24,19 @@ const Login = () => {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
         method: 'POST',
+        mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email: values.email, password: values.password }), // Pass form values
+        body: JSON.stringify({ email: values.email, password: values.password }), 
       });
 
       const data = await response.json();
 
       if (response.ok && data.access_token) {
-        localStorage.setItem('access_token', data.access_token); // Storing the token
-        console.log('Stored Token:', localStorage.getItem('access_token')); // Verify token is stored
-        router.push('/dashboard_user'); // Redirect to dashboard
+        localStorage.setItem('access_token', data.access_token); 
+        console.log('Stored Token:', localStorage.getItem('access_token')); 
+        router.push('/dashboard_user'); 
       } else {
         console.error('Login failed:', data.message);
       }

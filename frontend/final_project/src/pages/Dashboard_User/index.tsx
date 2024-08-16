@@ -5,7 +5,7 @@ import Biodata from '../../components/layouts/Dashboard_User/biodata';
 import TransactionList from '../../components/layouts/Dashboard_User/transaction';
 import { User, Transaction } from '../../types/user/types';
 import { useRouter } from 'next/router';
-import LogoutButton from '@/components/elements/logoutbutton';
+import LogoutButton from '@/components/elements/logoutbuttonuser';
 
 interface UserDashboardData {
   user: User;

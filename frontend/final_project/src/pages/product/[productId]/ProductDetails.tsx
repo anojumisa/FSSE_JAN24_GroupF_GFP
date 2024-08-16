@@ -3,8 +3,10 @@ import Button from "@/components/products/Button";
 import ProductImage from "@/components/products/ProductImage";
 import SetQuantity from "@/components/products/SetQuantity";
 import { useCart } from "@/hooks/useCart";
+import { formatPrice } from "@/utils/formatPrice";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { MdCheckCircle } from "react-icons/md";
 
 interface ProductDetailsProps {
@@ -15,16 +17,14 @@ export type CartProductType = {
     id: string,
     name: string,
     description: string,
-    category: string,
-    brand: string,
-    quantity: number,
     price: number,
-    image: string
+    quantity: number,
+    stock_quantity: number,
+    image_url: string
 }
 
 const Horizontal = () => {
     return <hr className="w-[30%] my-2" />
-    
 }
 
 const ProductDetails:React.FC<ProductDetailsProps> = ({ product }) => {
@@ -32,20 +32,19 @@ const ProductDetails:React.FC<ProductDetailsProps> = ({ product }) => {
     const [isProductInCart, setIsProductInCart] = useState(false);
     const { cartTotalQty } = useCart();
     const [cartProduct, setCartProduct] = useState<CartProductType>({
-        id: product.id,
-        name: product.name,
-        description: product.description,
-        category: product.category,
-        brand: product.brand,
+        id: product?.id || '',
+        name: product?.name || '',
+        description: product?.description || '',
         quantity: 1,
-        price: product.price,
-        image: product.image
+        stock_quantity: product?.stock_quantity || 0,
+        price: product?.price || 0,
+        image_url: product?.image_url || ''
     })
 
     const router = useRouter()
 
-    // console.log("Received Product in ProductDetails:", product);
-    // console.log(cartTotalQty);
+    console.log("Received Product in ProductDetails:", product);
+    console.log(cartTotalQty);
     console.log(cartProducts)
 
     useEffect(() => {
@@ -65,16 +64,17 @@ const ProductDetails:React.FC<ProductDetailsProps> = ({ product }) => {
     }
 
     const handleQtyIncrease = useCallback (() => {  
-        // Max Product (Opsional)
-        if (cartProduct.quantity === 99) {
-            return;
-        }
 
-        setCartProduct((prev) => ({
-            ...prev, 
+        if (cartProduct.quantity >= cartProduct.stock_quantity) {
+            toast.error("Max quantity reached");
+            return;
+          }
+        
+          setCartProduct((prev) => ({
+            ...prev,
             quantity: prev.quantity + 1
-        }));
-    }, [cartProduct]);
+          }));
+        }, [cartProduct]);
 
     const handleQtyDecrease = useCallback (() => {
 
@@ -91,41 +91,37 @@ const ProductDetails:React.FC<ProductDetailsProps> = ({ product }) => {
     return (
         <>
         <Navbar />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-        <ProductImage cartProduct={cartProduct} product={product} />
-        <div className="flex flex-col gap-1 text-slate-500 text-sm">
-            <h2 className="mb-2 text-3xl font-medium text-slate-700">{product.name}</h2>
-            <Horizontal /> 
-            <div className="mt-2 text-justify">{product.description}</div>                
-            <Horizontal />
-            <div>
-                <span className="font-semibold">CATEGORY:</span> {product.category}
+        <div className="pt-16 grid grid-cols-1 md:grid-cols-2 gap-12">
+            <ProductImage cartProduct={cartProduct} product={product} />
+            <div className="flex flex-col gap-1 text-slate-500 text-sm">
+                <h2 className="mb-2 text-3xl font-medium text-slate-700">{product.name}</h2>
+                <Horizontal /> 
+                <div className="mt-2 text-justify text-xl font-medium text-slate-700">{formatPrice(product.price)}</div>                
+                <Horizontal />
+                <div className="mt-2 text-justify">{product.description}</div>                
+                <Horizontal />
+                <div>
+                    <span className="font-semibold">STOCK:</span> {product.stock_quantity}
+                </div>              
+                <Horizontal />
+                {isProductInCart ? <>
+                <p className="mb-2 text-slate-500 flex items-center gap-1">
+                    <MdCheckCircle className="text-teal-400" size={20}/>
+                    <span>Product added to cart</span>
+                </p>
+                <div>
+                    <Button label="View Cart" outline onClick={() => {
+                        router.push('/cart')
+                    }}/>
+                </div>
+                </> : <>
+                <SetQuantity cartProduct={cartProduct} handleQtyIncrease={handleQtyIncrease} handleQtyDecrease={handleQtyDecrease}/>
+                <Horizontal />
+                <div className="max-w-[300px]">
+                    <Button outline label="Add to cart" onClick={() => handleAddProductToCart(cartProduct)}/>
+                </div>            
+                </>}
             </div>
-            <div>
-                <span className="font-semibold">BRAND:</span> {product.brand}
-            </div>
-            <div className={product.inStock ? "text-blue-400" : "text-red-400"}>
-                {product.inStock ? "In Stock" : "Out of Stock"}
-            </div>
-            <Horizontal />
-            {isProductInCart ? <>
-            <p className="mb-2 text-slate-500 flex items-center gap-1">
-                <MdCheckCircle className="text-teal-400" size={20}/>
-                <span>Product added to cart</span>
-            </p>
-            <div>
-                <Button label="View Cart" outline onClick={() => {
-                    router.push('/cart')
-                }}/>
-            </div>
-            </> : <>
-            <SetQuantity cartProduct={cartProduct} handleQtyIncrease={handleQtyIncrease} handleQtyDecrease={handleQtyDecrease}/>
-            <Horizontal />
-            <div className="max-w-[300px]">
-                <Button outline label="Add to cart" onClick={() => handleAddProductToCart(cartProduct)}/>
-            </div>            
-            </>}
-        </div>
         </div>                
         </>
     )

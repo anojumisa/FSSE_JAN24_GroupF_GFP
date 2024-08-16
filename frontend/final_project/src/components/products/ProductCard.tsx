@@ -1,5 +1,4 @@
 import { formatPrice } from "@/utils/formatPrice";
-import { truncate } from "fs";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -17,7 +16,7 @@ const ProductCard:React.FC<ProductCardProps> = ({data}:any) => {
             <div className="flex flex-col items-center w-full gap-1">
                 <div className="aspect-square overflow-hidden rounded-lg relative w-full">
                     <Image fill
-                    src={data.images[0].image}
+                    src={data.image_url}
                     alt={data.name}
                     className="w-full h-full object-contain"/>
                 </div>
@@ -26,8 +25,6 @@ const ProductCard:React.FC<ProductCardProps> = ({data}:any) => {
                 style={{overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', width: '100%', display: 'inline-block'}}>
                     <span>{data.name}</span>
                 </div>
-
-                <div>{data.reviews.length} reviews</div>
 
                 <div className="font-semibold">{formatPrice(data.price)}</div>
             </div>

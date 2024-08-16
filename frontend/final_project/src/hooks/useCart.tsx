@@ -1,4 +1,5 @@
 import { CartProductType } from "@/pages/product/[productId]/ProductDetails";
+import { products } from "../utils/products";
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import {toast} from 'react-hot-toast';
 
@@ -90,16 +91,13 @@ export const CartContextProvider = (props: Props) => {
     const handleCartQtyIncrease = useCallback((product: CartProductType) => {
         let updatedCart;
 
-        if(product.quantity === 99) {
-            return toast.error("Max quantity reached");
-        }
-
         if(cartProducts) {
             updatedCart = [...cartProducts]
             const existingIndex = cartProducts.findIndex((item) => item.id === product.id);
-
+    
             if(existingIndex > -1) {
-                updatedCart[existingIndex].quantity += 1
+                const newQuantity = Math.min(product.quantity + 1, product.stock_quantity);
+                updatedCart[existingIndex].quantity = newQuantity;
             }
 
             setCartProducts(updatedCart)

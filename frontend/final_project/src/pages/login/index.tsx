@@ -20,44 +20,30 @@ const Login = () => {
     password: '',
   };
 
-  async function handleSubmit(values: LoginValues, { setSubmitting, setFieldError }: any) {
+  const handleLogin = async (values: LoginValues) => {
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: values.email, password: values.password }), 
+      });
 
-      try {
-        console.log('Sending request to backend with values:', values);
-  
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
-          method: 'POST',
-          mode: 'cors',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(values),
-          credentials: 'include',
-        });
-  
-        const data = await response.json();
-        if (!response.ok) {
-          setFieldError('general', data.message || 'Failed to login');
-          return;
-        }
-  
-        const token = data.access_token;
-        console.log("Token:", token);
-        localStorage.setItem('token', data.token);
-  
-        if (token) {
-          localStorage.setItem('token', token);
-          router.push('/Dashboard_User');
-        } else {
-          setFieldError('general', 'Token is missing in response');
-        }      
-  
-      } catch (error) {
-        setFieldError('general', (error as Error).message);
-      } finally {
-        setSubmitting(false);
+      const data = await response.json();
+
+      if (response.ok && data.access_token) {
+        localStorage.setItem('access_token', data.access_token); 
+        console.log('Stored Token:', localStorage.getItem('access_token')); 
+        router.push('/dashboard_user'); 
+      } else {
+        console.error('Login failed:', data.message);
       }
-    };
+    } catch (error) {
+      console.error('Login error:', error);
+    }
+  };
 
   return (
     <div className="py-16">
@@ -73,7 +59,10 @@ const Login = () => {
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={handleSubmit}
+            onSubmit={(values, { setSubmitting }) => {
+              handleLogin(values);
+              setSubmitting(false);
+            }}
           >
             {({ isValid }) => (
               <Form>

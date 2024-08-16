@@ -1,26 +1,29 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 
-const LogoutButton = () => {
+const LogoutButtonUser = () => {
   const router = useRouter();
 
   const handleLogout = async () => {
     try {
-      const token = localStorage.getItem('token');
-      
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/logout`, {
+      const token = localStorage.getItem('token'); 
+
+      if (!token) {
+        router.push('/store_login'); 
+        return;
+      }
+
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/store_logout`, {
         method: 'POST',
-        mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,  // Include the token in the Authorization header
+          'Authorization': `Bearer ${token}`,
         },
-        credentials: 'include',
       });
 
       if (response.ok) {
-        localStorage.removeItem('token');
-        router.push('/');
+        localStorage.removeItem('token'); 
+        router.push('/store_login'); 
       } else {
         console.error('Logout failed');
       }
@@ -39,4 +42,4 @@ const LogoutButton = () => {
   );
 };
 
-export default LogoutButton;
+export default LogoutButtonUser;

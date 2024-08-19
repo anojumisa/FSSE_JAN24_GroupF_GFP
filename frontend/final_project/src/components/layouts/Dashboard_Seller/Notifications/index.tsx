@@ -5,7 +5,7 @@ interface NotificationProps {
 }
 
 const Notification: React.FC<NotificationProps> = ({ storeName }) => (
-  <div className="bg-gray-100 p-4 rounded">
+  <div className="bg-slate-950 text-amber-400 p-4 rounded">
     Welcome, {storeName}!
   </div>
 );

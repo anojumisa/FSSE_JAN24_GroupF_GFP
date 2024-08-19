@@ -16,13 +16,12 @@ const TopButtons = () => {
     <div>
       <div className="flex space-x-4">
         <button
-          className="bg-orange-400 text-white py-2 px-4 rounded"
+          className="bg-amber-400 text-black py-2 px-4 rounded"
           onClick={openModal}
         >
           Add New Product
         </button>
-        <button className="bg-orange-400 text-white py-2 px-4 rounded">Edit Product Item</button>
-        <button className="bg-orange-400 text-white py-2 px-4 rounded">Remove Product Item</button>
+        
       </div>
 
       <ProductModal isOpen={isModalOpen} onRequestClose={closeModal} />

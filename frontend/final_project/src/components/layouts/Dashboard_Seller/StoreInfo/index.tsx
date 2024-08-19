@@ -11,12 +11,12 @@ const StoreInfo: React.FC<StoreInfoProps> = ({ storeInfo }) => {
   }
 
   return (
-    <div className="bg-blue-200 p-4 rounded">
-      <h3 className="text-xl font-bold mb-2">Store Information</h3>
-      <p><strong>Store Name:</strong> {storeInfo.store_name}</p>
-      <p><strong>Description:</strong> {storeInfo.description}</p>
-      <p><strong>Contact Number:</strong> {storeInfo.contact_number}</p>
-      <p><strong>Address:</strong> {storeInfo.address}, {storeInfo.city}, {storeInfo.state} - {storeInfo.zip_code}</p>
+    <div className="bg-slate-950 text-amber-400 p-4 rounded">
+      <h3 className="text-xl text-white font-bold mb-2">Store Information</h3>
+      <p><strong className='text-lime-300'>Store Name:</strong> {storeInfo.store_name}</p>
+      <p><strong className='text-lime-300'>Description:</strong> {storeInfo.description}</p>
+      <p><strong className='text-lime-300'>Contact Number:</strong> {storeInfo.contact_number}</p>
+      <p><strong className='text-lime-300'>Address:</strong> {storeInfo.address}, {storeInfo.city}, {storeInfo.state} - {storeInfo.zip_code}</p>
     </div>
   );
 };

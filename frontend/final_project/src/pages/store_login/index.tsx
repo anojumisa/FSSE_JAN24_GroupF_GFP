@@ -145,7 +145,7 @@ export default function LoginSeller() {
 							<div className="mt-8">
 								<button
 									type="submit"
-									className="bg-lime-400 text-black font-bold py-2 px-4 w-full rounded hover:bg-lime-500"
+									className="bg-black text-white font-bold py-2 px-4 w-full rounded hover:bg-lime-900"
 								>
 									Login
 								</button>

@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 interface LoginValues {
 	email: string;
@@ -18,6 +20,7 @@ const validationSchema = Yup.object({
 
 const Login = () => {
 	const router = useRouter();
+	const [showPassword, setShowPassword] = useState(false);
 	const initialValues: LoginValues = {
 		email: "",
 		password: "",
@@ -42,7 +45,7 @@ const Login = () => {
 			if (response.ok && data.access_token) {
 				localStorage.setItem("access_token", data.access_token);
 				console.log("Stored Token:", localStorage.getItem("access_token"));
-				router.push("/dashboard_user");
+				router.push("/Dashboard_User");
 			} else {
 				console.error("Login failed:", data.message);
 			}
@@ -98,20 +101,31 @@ const Login = () => {
 										component="div"
 									/>
 								</div>
-								<div className="mt-4">
+								<div className="mt-4 relative">
 									<label
 										className="block text-gray-700 text-sm font-bold mb-2"
 										htmlFor="password"
 									>
 										Password
 									</label>
-									<Field
-										type="password"
-										id="password"
-										name="password"
-										placeholder="Enter your password"
-										className="bg-amber-200 text-black focus:outline-none focus:shadow-outline border border-black rounded py-2 px-4 block w-full appearance-none"
-									/>
+									<div className="relative">
+										<Field
+											type={showPassword ? "text" : "password"}
+											id="password"
+											name="password"
+											placeholder="Enter your password"
+											className="bg-amber-200 text-black focus:outline-none focus:shadow-outline border border-black rounded py-2 px-4 block w-full appearance-none"
+										/>
+										<button
+											type="button"
+											onClick={() => setShowPassword(!showPassword)}
+											className="absolute inset-y-0 right-0 pr-3 flex items-center justify-center h-full text-sm leading-5"
+										>
+											<FontAwesomeIcon
+												icon={showPassword ? faEyeSlash : faEye}
+											/>
+										</button>
+									</div>
 									<ErrorMessage
 										className="text-red-500 text-xs italic"
 										name="password"
@@ -121,7 +135,7 @@ const Login = () => {
 								<div className="mt-8">
 									<button
 										type="submit"
-										className="bg-lime-400 text-black font-bold py-2 px-4 w-full rounded hover:bg-lime-500"
+										className="bg-black text-white font-bold py-2 px-4 w-full rounded hover:bg-lime-900"
 										disabled={!isValid}
 									>
 										Login

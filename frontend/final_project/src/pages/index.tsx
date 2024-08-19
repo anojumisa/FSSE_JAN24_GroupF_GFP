@@ -30,6 +30,7 @@ export default function Home() {
       <NavbarWithObserver />
       <HeroSectionWithObserver />
       <CarouselLogoWithObserver />
+      <div id="green-movement"></div>
       <SliderWithObserver />
       <ProductCardCategoryWithObserver />
       <ProductCardCategoryWithObserver />

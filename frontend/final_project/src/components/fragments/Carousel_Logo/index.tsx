@@ -32,49 +32,43 @@ export default function CarouselLogo() {
 			<div className="glide-09 relative w-full">
 				{/* <!-- Slides --> */}
 				<div data-glide-el="track">
-					<ul className="whitespace-no-wrap flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform] relative flex w-full overflow-hidden p-0">
+					<ul className="whitespace-no-wrap flex-no-wrap [backface-visibility: hidden] [transform-style: preserve-3d] [touch-action: pan-Y] [will-change: transform] relative flex h-10 overflow-hidden p-0 ">
 						<li>
 							<img
-								src="https://Tailwindmix.b-cdn.net/carousel/logos/carousel-logo-image-1.svg"
+								src="/carousel/carousel1.png"
 								className="m-auto h-20 max-h-full w-auto max-w-full"
 								alt="Logo 1"
 							/>
 						</li>
 						<li>
 							<img
-								src="https://Tailwindmix.b-cdn.net/carousel/logos/carousel-logo-image-2.svg"
+								src="/carousel/carousel2.png"
 								className="m-auto h-20 max-h-full w-auto max-w-full"
 								alt="Logo 2"
 							/>
 						</li>
 						<li>
 							<img
-								src="https://Tailwindmix.b-cdn.net/carousel/logos/carousel-logo-image-3.svg"
+								src="/carousel/carousel3.png"
 								className="m-auto h-20 max-h-full w-auto max-w-full"
 								alt="Logo 3"
 							/>
 						</li>
 						<li>
 							<img
-								src="https://Tailwindmix.b-cdn.net/carousel/logos/carousel-logo-image-4.svg"
+								src="/carousel/carousel4.png"
 								className="m-auto h-20 max-h-full w-auto max-w-full"
 								alt="Logo 4"
 							/>
 						</li>
 						<li>
 							<img
-								src="https://Tailwindmix.b-cdn.net/carousel/logos/carousel-logo-image-5.svg"
+								src="/carousel/carousel5.png"
 								className="m-auto h-20 max-h-full w-auto max-w-full"
 								alt="Logo 5"
 							/>
 						</li>
-						<li>
-							<img
-								src="https://Tailwindmix.b-cdn.net/carousel/logos/carousel-logo-image-6.svg"
-								className="m-auto h-20 max-h-full w-auto max-w-full"
-								alt="Logo 6"
-							/>
-						</li>
+						
 					</ul>
 				</div>
 			</div>

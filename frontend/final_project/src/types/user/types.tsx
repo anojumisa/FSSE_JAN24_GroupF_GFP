@@ -7,6 +7,8 @@ export interface User {
     state: string;
     zip_code: string;
     image_url?: string; 
+    created_at: string;
+    username: string;
   }
   
   export interface Transaction {

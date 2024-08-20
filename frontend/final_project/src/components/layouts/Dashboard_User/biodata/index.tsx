@@ -2,8 +2,21 @@ import React, { useState } from "react";
 import { User } from "../../../../types/user/types"; // Adjust the import path if needed
 
 interface BiodataProps {
-	user: User;
-	onUpdate: (updatedUser: User) => void;
+	user: UserType;
+	onUpdate: (updatedUser: UserType) => void;
+}
+
+interface UserType {
+	first_name: string;
+	last_name: string;
+	email: string;
+	address: string;
+	city: string; // Provide a default value for the city property
+	state?: string;
+	zip_code?: string;
+	image_url?: string;
+	created_at: string;
+	username: string;
 }
 
 const Biodata: React.FC<BiodataProps> = ({ user, onUpdate }) => {
@@ -26,7 +39,11 @@ const Biodata: React.FC<BiodataProps> = ({ user, onUpdate }) => {
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		try {
-			const token = localStorage.getItem("token");
+			const token = localStorage.getItem("access_token");
+
+			if (!token) {
+				throw new Error("No token found in localStorage");
+			}
 
 			// Upload the image if a file is selected
 			let imageUrl = formData.image_url;
@@ -40,7 +57,9 @@ const Biodata: React.FC<BiodataProps> = ({ user, onUpdate }) => {
 				});
 
 				if (!uploadResponse.ok) {
-					throw new Error(`HTTP error! status: ${uploadResponse.status}`);
+					throw new Error(
+						`Image upload failed with status: ${uploadResponse.status}`
+					);
 				}
 
 				const uploadData = await uploadResponse.json();
@@ -49,14 +68,11 @@ const Biodata: React.FC<BiodataProps> = ({ user, onUpdate }) => {
 				// Log the image URL to ensure it's correctly formed
 				console.log("Uploaded image URL:", imageUrl);
 			}
-
-			// Ensure the image URL is correctly set
-			if (!imageUrl || !imageUrl.includes("://")) {
-				throw new Error("Invalid image URL");
-			}
-
 			// Update the user with the new image URL
 			const updatedUser = { ...formData, image_url: imageUrl };
+
+			// Log the updatedUser object to ensure it has all required fields
+			console.log("Updated user data:", updatedUser);
 
 			const response = await fetch("http://127.0.0.1:5000/profile", {
 				method: "PUT",
@@ -67,14 +83,17 @@ const Biodata: React.FC<BiodataProps> = ({ user, onUpdate }) => {
 				body: JSON.stringify(updatedUser),
 			});
 
+			// Log the response status and data
+			console.log("Response status:", response.status);
+			const responseData = await response.json();
+			console.log("Response data:", responseData);
+
 			if (response.ok) {
-				const updatedUserData = await response.json();
-				onUpdate(updatedUserData);
+				onUpdate(responseData);
 				setIsEditing(false);
 				setError(null); // Clear any previous errors
 			} else {
-				const errorData = await response.json();
-				console.error("Failed to update user:", errorData);
+				console.error("Failed to update user:", responseData);
 				setError(
 					"An error occurred while updating the biodata. Please try again."
 				);
@@ -86,6 +105,9 @@ const Biodata: React.FC<BiodataProps> = ({ user, onUpdate }) => {
 			);
 		}
 	};
+
+	// Log the user image URL to verify it's being passed correctly
+	console.log("User image URL:", user.image_url);
 
 	return (
 		<div>
@@ -104,6 +126,7 @@ const Biodata: React.FC<BiodataProps> = ({ user, onUpdate }) => {
 								value={formData.first_name}
 								onChange={handleChange}
 								className="bg-white text-black focus:outline-none focus:shadow-outline border border-black rounded py-2 px-4 block w-full appearance-none"
+								required
 							/>
 						</div>
 						<div className="flex items-center">
@@ -114,6 +137,7 @@ const Biodata: React.FC<BiodataProps> = ({ user, onUpdate }) => {
 								value={formData.last_name}
 								onChange={handleChange}
 								className="bg-white text-black focus:outline-none focus:shadow-outline border border-black rounded py-2 px-4 block w-full appearance-none"
+								required
 							/>
 						</div>
 						<div className="flex items-center">
@@ -124,6 +148,7 @@ const Biodata: React.FC<BiodataProps> = ({ user, onUpdate }) => {
 								value={formData.email}
 								onChange={handleChange}
 								className="bg-white text-black focus:outline-none focus:shadow-outline border border-black rounded py-2 px-4 block w-full appearance-none"
+								required
 							/>
 						</div>
 						<div className="flex items-center">
@@ -194,16 +219,28 @@ const Biodata: React.FC<BiodataProps> = ({ user, onUpdate }) => {
 				</form>
 			) : (
 				<div>
-					<div className="bg-amber-400 p-4 rounded border border-gray-950">
-						<h2 className="text-2xl mb-2">
-							Hi,{" "}
-							<span className="font-bold underline">
-								{user.first_name} {user.last_name}
-							</span>
-						</h2>
-						<p className="text-lg mb-2">Here is your biodata:</p>
-						<p className="text-lg mb-2">Email: {user.email}</p>
-						<p className="text-lg mb-2">
+					<div className="bg-gradient-to-r from-amber-400 via-amber-700 to-amber-900 p-4 rounded border border-gray-950">
+                    <div className="bg-gradient-to-r from-amber-900 via-gray-700 to-gray-900 rounded overflow-hidden shadow-lg p-4">							{" "}
+							{user.image_url && (
+								<div className="flex justify-center">
+									<img
+										src={user.image_url}
+										alt={`${user.first_name} ${user.last_name}`}
+										className="w-32 h-32 rounded-full object-cover object-top"
+									/>
+								</div>
+							)}
+							<div className="text-center text-white">
+								<h1>
+									{user.first_name} {user.last_name}
+								</h1>
+								<h2 className="text-xs">Registered at {user.created_at}</h2>
+							</div>
+						</div>
+						<p className="font-bold mb-2 underline">Contact Details:</p>
+						<p className=" mb-2">username: {user.username}</p>
+						<p className=" mb-2">Email: {user.email}</p>
+						<p className=" mb-2">
 							Address: {user.address}, {user.city}, {user.state},{" "}
 							{user.zip_code}
 						</p>
@@ -213,9 +250,6 @@ const Biodata: React.FC<BiodataProps> = ({ user, onUpdate }) => {
 						>
 							Edit
 						</button>
-					</div>
-					<div>
-						<img src={user.image_url} alt="" />
 					</div>
 				</div>
 			)}

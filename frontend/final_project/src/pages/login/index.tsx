@@ -36,7 +36,7 @@ const Login = () => {
       if (response.ok && data.access_token) {
         localStorage.setItem('access_token', data.access_token); 
         console.log('Stored Token:', localStorage.getItem('access_token')); 
-        router.push('/dashboard_user'); 
+        router.push('/Dashboard_User'); 
       } else {
         console.error('Login failed:', data.message);
       }

@@ -19,7 +19,7 @@ export default function HeroSection() {
 							Find your delicacies
 							<img src="/arrow.png" alt="" className="w-6 h-6 ml-2" />
 						</a>
-						<SearchBar search="search your food here..." />
+						<SearchBar search={"search your food here..."} />
 					</div>
 					<div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
 						<img src="/hero.png" alt="mockup" />

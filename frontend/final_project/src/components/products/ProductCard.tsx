@@ -16,7 +16,9 @@ const oswaldBold = Oswald({ weight: '700', subsets: ['latin'] });
 
 const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
     const router = useRouter();
-
+    // if (!data || !data.image_url) {
+    //     return null; // or handle the error appropriately
+    // }
     // Ensure the image URL is correctly formatted
     const imageUrl = data.image_url.startsWith("http")
         ? data.image_url

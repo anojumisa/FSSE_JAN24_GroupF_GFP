@@ -10,23 +10,27 @@ const SearchResults = () => {
     const parsedResults = results ? JSON.parse(results as string) : [];
 
     const [selectedLocations, setSelectedLocations] = useState<string[]>([]);
+    const [selectedPrice, setSelectedPrice] = useState<number>(0);
     const [filteredProductItems, setFilteredProductItems] = useState<any[]>(parsedResults);
 
     useEffect(() => {
-        // Filter product items based on selected locations
-        if (selectedLocations.length === 0) {
-            setFilteredProductItems(parsedResults); // Show all products if no location is selected
-        } else {
-            setFilteredProductItems(
-                parsedResults.filter(item => selectedLocations.includes(item.location))
-            );
-        }
-    }, [selectedLocations, parsedResults]);
+        // Filter product items based on selected locations and price
+        const filtered = parsedResults.filter((item: any) => 
+            (selectedLocations.length === 0 || selectedLocations.includes(item.location)) &&
+            (selectedPrice === 0 || item.price <= selectedPrice)
+        );
+        setFilteredProductItems(filtered);
+    }, [selectedLocations, selectedPrice, results]);  // Ensure correct dependencies
 
     return (
         <div className="search-results border-slate-950 p-8 mt-16">
             <Navbar />
-            <Sidebar selectedLocations={selectedLocations} setSelectedLocations={setSelectedLocations} />
+            <Sidebar 
+                selectedLocations={selectedLocations} 
+                setSelectedLocations={setSelectedLocations} 
+                selectedPrice={selectedPrice} 
+                setSelectedPrice={setSelectedPrice} 
+            />
             <div className="ml-64 p-4">
                 <h1 className="text-2xl font-bold mb-4">
                     <span className='italic'>Ta-da!</span> Here's what we found for <span className='text-lime-800 underline italic'>{keyword ? keyword : 'No keyword provided'}:</span>

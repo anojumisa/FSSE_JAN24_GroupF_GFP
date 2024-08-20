@@ -5,9 +5,27 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 interface SidebarProps {
     selectedLocations: string[];
     setSelectedLocations: React.Dispatch<React.SetStateAction<string[]>>;
+    selectedPrice: number;
+    setSelectedPrice: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ selectedLocations, setSelectedLocations }) => {
+const PriceFilter: React.FC<{ selectedPrice: number, handlePriceChange: (e: React.ChangeEvent<HTMLInputElement>) => void }> = ({ selectedPrice, handlePriceChange }) => (
+    <div className="mb-4">
+        <h3 className="font-semibold">Price Range</h3>
+        <input 
+            type="range" 
+            min="5000" 
+            max="200000" 
+            step="5000" 
+            className="w-full h-2 bg-black rounded-lg appearance-none cursor-pointer" 
+            value={selectedPrice}
+            onChange={handlePriceChange}
+        />
+        <p>Selected Price: Rp{selectedPrice}</p>
+    </div>
+);
+
+const Sidebar: React.FC<SidebarProps> = ({ selectedLocations, setSelectedLocations, selectedPrice, setSelectedPrice }) => {
     const [isMinimized, setIsMinimized] = useState(false);
 
     const toggleSidebar = () => {
@@ -19,6 +37,10 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedLocations, setSelectedLocatio
         setSelectedLocations(prev =>
             checked ? [...prev, value] : prev.filter(location => location !== value)
         );
+    };
+
+    const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSelectedPrice(Number(e.target.value));
     };
 
     return (
@@ -33,18 +55,8 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedLocations, setSelectedLocatio
                             <h2 className="text-xl font-bold mb-4">Filters</h2>
                             {/* Add your filter options here */}
                             
-                            <div className="mb-4">
-                                <h3 className="font-semibold">Category</h3>
-                                <ul>
-                                    <li><input type="checkbox" id="category1" name="category1" /> <label htmlFor="category1" className="ml-2">Category 1</label></li>
-                                    <li><input type="checkbox" id="category2" name="category2" /> <label htmlFor="category2" className="ml-2">Category 2</label></li>
-                                    <li><input type="checkbox" id="category3" name="category3" /> <label htmlFor="category3" className="ml-2">Category 3</label></li>
-                                </ul>
-                            </div>
-                            <div className="mb-4">
-                                <h3 className="font-semibold">Price Range</h3>
-                                <input type="range" min="0" max="1000" step="10" />
-                            </div>
+                            <PriceFilter selectedPrice={selectedPrice} handlePriceChange={handlePriceChange} />
+
                             <div className="mb-4">
                                 <h3 className="font-semibold">Location</h3>
                                 <ul>

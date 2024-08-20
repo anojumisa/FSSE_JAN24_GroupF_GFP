@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 interface SearchBarProps {
-	search: string;
+    search: string;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ search }) => {
@@ -23,7 +23,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ search }) => {
             const results = await response.json();
             router.push({
                 pathname: '/search',
-                query: { results: JSON.stringify(results) },
+                query: { results: JSON.stringify(results), keyword: searchInput },
             });
         } catch (error) {
             console.error('Fetch error:', error);

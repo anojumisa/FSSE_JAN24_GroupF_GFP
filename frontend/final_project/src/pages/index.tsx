@@ -10,6 +10,7 @@ import HeroSection from "@/components/layouts/Landing_Page/HeroSection";
 import ProductCardCategory from "@/components/layouts/Landing_Page/ProductCardCategory";
 import Slider from "@/components/layouts/Landing_Page/GreenProject/Slider";
 import withIntersectionObserver from "@/components/hoc/withIntersectionObserver";
+import Header from "@/components/layouts/Landing_Page/ProjectTeam/header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ const ProjectTeamWithObserver = withIntersectionObserver(ProjectTeam);
 const TestimonialsWithObserver = withIntersectionObserver(Testimonials);
 const FooterWithObserver = withIntersectionObserver(Footer);
 const SliderWithObserver = withIntersectionObserver(Slider);
+const HeaderWithObserver = withIntersectionObserver(Header);
 
 export default function Home() {
   return (
@@ -38,6 +40,7 @@ export default function Home() {
       <CTA_rightWithObserver />
       <CTA_leftWithObserver />
       <CTA_rightWithObserver />
+      <HeaderWithObserver />
       <ProjectTeamWithObserver />
       <TestimonialsWithObserver />
       <FooterWithObserver />

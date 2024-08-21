@@ -9,12 +9,12 @@ export default function ProjectTeam() {
 				image="/Ano.png"
 			/>
 			<ProjectTeamCard
-				title="Software Engineer"
+				title="Fullstack Software Engineer"
 				name="Fachmi Nur Julianto"
 				image="/Fachmi.png"
 			/>
 			<ProjectTeamCard
-				title="Software Engineer"
+				title="Fullstack Software Engineer"
 				name="Mutiara Nafysah"
 				image="/Mutiara.png"
 			/>

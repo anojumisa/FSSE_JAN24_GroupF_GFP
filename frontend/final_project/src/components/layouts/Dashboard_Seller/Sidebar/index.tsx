@@ -18,7 +18,7 @@ const Sidebar = ({ onAddProduct }: { onAddProduct: () => void }) => {
 		>
 			<button
 				onClick={toggleSidebar}
-				className="absolute w-10 h-10 cursor-pointer top-4 right-4 mb-4 w-10 h-10 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 focus:outline-none  "
+				className="absolute cursor-pointer top-4 right-4 mb-4 w-10 h-10 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 focus:outline-none  "
 			>
 				{isMinimized ? (
 					<HiArrowRightCircle size={50} />
@@ -41,10 +41,10 @@ const Sidebar = ({ onAddProduct }: { onAddProduct: () => void }) => {
 								<FaPlus className="mr-2" />
 								<a
 									href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onAddProduct();
-                  }}
+									onClick={(e) => {
+										e.preventDefault();
+										onAddProduct();
+									}}
 									className="text-gray-700 hover:text-gray-900 text-xl font-bold"
 								>
 									Add New Product

@@ -60,20 +60,43 @@ export const CartContextProvider = (props: Props) => {
         getTotals()
     }, [cartProducts])
 
-    const handleAddProductToCart = useCallback((product: CartProductType) => {
-        setCartProducts((prev) => {
-            let updatedCart;
+    const handleAddProductToCart = useCallback(async(product: CartProductType) => {
+        const token = localStorage.getItem('access_token');
 
-            if (prev) {
-                updatedCart = [...prev, product]
-            } else {
-                updatedCart = [product]
+        if (!token) {
+            toast.error("Authentication required!");
+            return;
+        }
+    
+        try {
+            const response = await fetch('http://localhost:5000/cart/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    productId: parseInt(product.id, 10),
+                    quantity: product.quantity
+                }),
+            });
+    
+            if (!response.ok) {
+                const errorData = await response.json();  // Get detailed error information
+                console.error('Error response:', errorData);
+                throw new Error(errorData.message || 'Failed to add product to cart');
             }
-
-            toast.success("Product added to cart!");
-            localStorage.setItem('eShopCartItems', JSON.stringify(updatedCart))
-            return updatedCart;
-        });
+    
+            setCartProducts((prev) => {
+                let updatedCart = prev ? [...prev, product] : [product];
+                toast.success('Product added to cart!');
+                localStorage.setItem('eShopCartItems', JSON.stringify(updatedCart));
+                return updatedCart;
+            });
+        } catch (error:any) {
+            console.error('Error adding product to cart:', error);
+            toast.error(error.message || 'Failed to add product to cart');
+        }
     }, []);
 
     const handleRemoveProductFromCart = useCallback((product: CartProductType) => {

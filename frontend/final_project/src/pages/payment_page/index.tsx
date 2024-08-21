@@ -59,10 +59,10 @@ const PaymentPage: React.FC = () => {
     } else if (paymentMethod === 'mbanking') {
       setModalMessage(`
         <strong style="font-size: 1.2em;">Payment Instruction</strong><br/><br/>
-        Terima kasih atas kepercayaan anda.<br/>
+        Terima kasih atas kepercayaan Anda.<br/>
         segera selesaikan pembayaran anda sebesar ₹${cartTotalAmount} ke rekening bersama Localbites dibawah ini:<br/><br/>
         BCA A.N. Localbites 50012312<br/><br/>
-        jika anda sudah menyelesaikan transaksi, resi akan segera dikirimkan ke email anda dalam kurun waktu 1x5 jam setelah anda mengkonfirmasi pembayaran anda.
+        jika anda sudah menyelesaikan transaksi, resi akan segera dikirimkan ke email anda dalam kurun waktu 1x5 jam setelah anda mengonfirmasi pembayaran anda.
       `);
     }
     setIsModalOpen(true);

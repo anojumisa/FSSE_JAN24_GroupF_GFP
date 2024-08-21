@@ -15,6 +15,8 @@ export interface Order {
 
 export interface StoreInfo {
   store_name: string;
+  username: string;
+  email: string;
   description: string;
   bank_account: string;
   contact_number: string;
@@ -23,4 +25,6 @@ export interface StoreInfo {
   state: string;
   zip_code: string;
   image_url: string;
+  seller_full_name: string;
+  created_at: string;
 }

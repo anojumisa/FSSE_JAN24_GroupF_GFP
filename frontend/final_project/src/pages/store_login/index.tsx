@@ -90,11 +90,11 @@ export default function LoginSeller() {
 
 						<div className="w-full p-8 lg:w-1/2">
 							<Link href={"/"}>
-							<img
-								src="localbites_logo.png"
-								alt="localbites logo"
-								className="w-16 mx-auto"
-							/>
+								<img
+									src="localbites_logo.png"
+									alt="localbites logo"
+									className="w-16 mx-auto"
+								/>
 							</Link>
 							<p className="text-xl text-gray-600 text-center">
 								Let's make some magic happen today!

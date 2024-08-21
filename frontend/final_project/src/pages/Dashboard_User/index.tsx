@@ -59,10 +59,10 @@ const Dashboard: React.FC = () => {
 
   return (
     <div>
-      {/* Navbar */}
+      {}
       <UserNavbar username={userData.user.first_name} />
       
-      {/* Adjust the padding-top to match the height of the navbar */}
+      {}
       <div className="flex pt-20">
         <Sidebar />
         <div className="flex-1 p-6">

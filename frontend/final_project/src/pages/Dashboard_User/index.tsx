@@ -6,6 +6,7 @@ import TransactionList from '../../components/layouts/Dashboard_User/transaction
 import { User, Transaction } from '../../types/user/types';
 import { useRouter } from 'next/router';
 import LogoutButton from '@/components/elements/logoutbuttonuser';
+import UserNavbar from '../../components/layouts/Dashboard_User/navbar'; // Adjust the path as needed
 
 interface UserDashboardData {
   user: User;
@@ -18,12 +19,10 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     const fetchDashboardData = async () => {
-      const token = localStorage.getItem('access_token'); // Fetch JWT token from localStorage
-      console.log('Token from localStorage:', token); // Log token for debugging
+      const token = localStorage.getItem('access_token');
 
       if (!token) {
-        console.log('No token found, redirecting to login');
-        router.push('/login'); // Redirect to login if no token is found
+        router.push('/login');
         return;
       }
 
@@ -34,21 +33,17 @@ const Dashboard: React.FC = () => {
           credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}` // Add the JWT token in the Authorization header
+            'Authorization': `Bearer ${token}`
           }
         });
 
-        console.log('Response status:', response.status); // Log response status
         if (response.status === 401) {
-          console.log('Unauthorized access, redirecting to login');
-          localStorage.removeItem('access_token'); // If unauthorized, remove token and redirect
+          localStorage.removeItem('access_token');
           router.push('/login');
           return;
         }
 
         const data = await response.json();
-        console.log('Data fetched from API:', data); // Log data from API response
-
         setUserData(data);
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -63,28 +58,34 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <div className="flex">
-      <Sidebar />
-      <div className="flex-1 p-6">
-        <div className="flex justify-between mb-6">
-          <Notification username={userData.user.first_name} /> {/* Pass first_name */}
-          <LogoutButton />
-        </div>
-        <div className="mb-6">
-          {userData.user ? (
-            <Biodata user={userData.user} onUpdate={(updatedUser: User) => {}} />
-          ) : (
-            <div>User data not available</div>
-          )}
-        </div>
-        <div className="grid gap-6">
-          {userData.transactions && userData.transactions.length > 0 ? (
-            userData.transactions.map((transaction) => (
-              <TransactionList key={transaction.id} transaction={transaction} />
-            ))
-          ) : (
-            <div>No transactions found</div>
-          )}
+    <div>
+      {/* Navbar */}
+      <UserNavbar username={userData.user.first_name} />
+      
+      {/* Adjust the padding-top to match the height of the navbar */}
+      <div className="flex pt-20">
+        <Sidebar />
+        <div className="flex-1 p-6">
+          <div className="flex justify-between mb-6">
+            <Notification username={userData.user.first_name} />
+            <LogoutButton />
+          </div>
+          <div className="mb-6">
+            {userData.user ? (
+              <Biodata user={userData.user} onUpdate={(updatedUser: User) => {}} />
+            ) : (
+              <div>User data not available</div>
+            )}
+          </div>
+          <div className="grid gap-6">
+            {userData.transactions && userData.transactions.length > 0 ? (
+              userData.transactions.map((transaction) => (
+                <TransactionList key={transaction.id} transaction={transaction} />
+              ))
+            ) : (
+              <div>No transactions found</div>
+            )}
+          </div>
         </div>
       </div>
     </div>

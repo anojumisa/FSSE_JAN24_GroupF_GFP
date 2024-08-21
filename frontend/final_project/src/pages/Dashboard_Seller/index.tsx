@@ -12,6 +12,7 @@ import {
 	StoreInfo as StoreInfoType,
 } from "../../types/seller"; // Adjust the path as necessary
 import ProductModal from "@/components/fragments/ProductModal";
+import SellerNavbar from "../../components/layouts/Dashboard_Seller/navbar";
 
 const Dashboard = () => {
 	const [orders, setOrders] = useState<Order[] | null>(null);
@@ -182,34 +183,40 @@ const Dashboard = () => {
 	};
 
 	return (
-		<div className="flex">
-			<Sidebar onAddProduct={openAddProductModal} />
-			<div className="flex-1 p-6">
-				<div className="flex justify-between mb-6">
-					<TopButtons />
-					<div className="flex space-x-4">
-						<Notification
-							storeName={storeInfo?.store_name || "Your Store"}
-							storeImage={storeInfo?.image_url || ""}
-						/>
-						<LogoutButton />
+		<div>
+			{/* Navbar */}
+			<SellerNavbar storeName={storeInfo?.store_name || "Your Store"} />
+
+			{/* Adjust the padding-top to match the height of the navbar */}
+			<div className="flex pt-20">
+				<Sidebar onAddProduct={openAddProductModal} />
+				<div className="flex-1 p-6">
+					<div className="flex justify-between mb-6">
+						<TopButtons />
+						<div className="flex space-x-4">
+							<Notification
+								storeName={storeInfo?.store_name || "Your Store"}
+								storeImage={storeInfo?.image_url || ""}
+							/>
+							<LogoutButton />
+						</div>
 					</div>
-				</div>
-				<div className="grid grid-cols-2 gap-6">
-					<StoreInfo
-						storeInfo={storeInfo}
-						onUpdateStoreInfo={handleUpdateStoreInfo}
-					/>
-					<Orders orders={orders} />
-					<div>
-						<ProductOverview
-							overview={overview}
-							onUpdateProduct={(id) => {
-								const product = products.find((p) => p.id === id);
-								if (product) openModal(product);
-							}}
-							onRemoveProduct={handleRemoveProduct} // Use the handleRemoveProduct function
+					<div className="grid grid-cols-2 gap-6">
+						<StoreInfo
+							storeInfo={storeInfo}
+							onUpdateStoreInfo={handleUpdateStoreInfo}
 						/>
+						<Orders orders={orders} />
+						<div>
+							<ProductOverview
+								overview={overview}
+								onUpdateProduct={(id) => {
+									const product = products.find((p) => p.id === id);
+									if (product) openModal(product);
+								}}
+								onRemoveProduct={handleRemoveProduct} // Use the handleRemoveProduct function
+							/>
+						</div>
 					</div>
 				</div>
 			</div>

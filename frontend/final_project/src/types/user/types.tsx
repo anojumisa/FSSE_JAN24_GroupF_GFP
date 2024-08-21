@@ -9,6 +9,7 @@ export interface User {
     image_url?: string; 
     created_at: string;
     username: string;
+    
   }
   
   export interface Transaction {

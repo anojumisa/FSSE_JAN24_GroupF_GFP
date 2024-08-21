@@ -21,7 +21,7 @@ const PriceFilter: React.FC<{ selectedPrice: number, handlePriceChange: (e: Reac
             value={selectedPrice}
             onChange={handlePriceChange}
         />
-        <p>Selected Price: Rp{selectedPrice}</p>
+        <p>Max. Price: Rp{selectedPrice}</p>
     </div>
 );
 

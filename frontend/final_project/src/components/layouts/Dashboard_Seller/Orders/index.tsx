@@ -7,9 +7,9 @@ interface OrdersProps {
 
 const Orders: React.FC<OrdersProps> = ({ orders }) => {
   return (
-    <div className="bg-orange-200 p-4 rounded">
-      <h3 className="text-xl font-bold mb-2">Orders</h3>
-      <table className="w-full">
+    <div className="bg-slate-950 p-4 rounded">
+      <h3 className="text-xl text-white font-bold mb-2">Orders</h3>
+      <table className="w-full text-amber-400">
         <thead>
           <tr>
             <th className="text-left">Order ID</th>

@@ -4,6 +4,7 @@ export interface ProductOverviewData {
   name: string;
   price: number;
   stock_quantity: number;
+  image_url: string;
 }
 
 export interface Order {

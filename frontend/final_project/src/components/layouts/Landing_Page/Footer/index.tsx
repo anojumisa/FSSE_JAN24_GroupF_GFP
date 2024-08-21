@@ -6,9 +6,9 @@ export default function Footer() {
 			<footer className="bg-white lg:grid lg:grid-cols-5">
 				<div className="relative block h-32 lg:col-span-2 lg:h-full">
 					<img
-						src="landing_page/carbon_neutral.jpg"
+						src="/footer.jpg"
 						alt=""
-						className="absolute inset-0 h-full w-full object-cover"
+						className="absolute inset-0 h-full w-full object-cover filter brightness-150"
 					/>
 				</div>
 
@@ -157,7 +157,7 @@ export default function Footer() {
 								<ul className="mt-6 space-y-4 text-sm">
 									<li>
 										<a
-											href="#"
+											href="/products"
 											className="text-gray-700 transition hover:opacity-75"
 										>
 											{" "}
@@ -187,7 +187,7 @@ export default function Footer() {
 
 									<li>
 										<a
-											href="#"
+											href="/#green-movement"
 											className="text-gray-700 transition hover:opacity-75"
 										>
 											{" "}
@@ -223,7 +223,7 @@ export default function Footer() {
 
 									<li>
 										<a
-											href="#meet-the-team"
+											href="/about#meet-the-team"
 											className="text-gray-700 transition hover:opacity-75"
 										>
 											{" "}

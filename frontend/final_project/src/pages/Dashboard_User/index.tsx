@@ -72,7 +72,7 @@ const Dashboard: React.FC = () => {
         </div>
         <div className="mb-6">
           {userData.user ? (
-            <Biodata user={userData.user} />
+            <Biodata user={userData.user} onUpdate={(updatedUser: User) => {}} />
           ) : (
             <div>User data not available</div>
           )}

@@ -6,15 +6,17 @@ Modal.setAppElement("#__next"); // This is important for accessibility
 const ProductModal = ({
 	isOpen,
 	onRequestClose,
+	productId,
 }: {
 	isOpen: boolean;
 	onRequestClose: () => void;
+	productId: number;
 }) => {
 	const [productName, setProductName] = useState("");
 	const [productDescription, setProductDescription] = useState("");
 	const [productPrice, setProductPrice] = useState("");
 	const [stockQuantity, setStockQuantity] = useState("");
-	const [imageUrl, setImageUrl] = useState("");
+	
 	const [location, setLocation] = useState("");
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -24,7 +26,7 @@ const ProductModal = ({
 			description: productDescription,
 			price: parseFloat(productPrice), // Convert to number
 			stock_quantity: parseInt(stockQuantity, 10), // Convert to number
-			image_url: imageUrl,
+			
 			location: location,
 		};
 		console.log("Sending product data:", productData);
@@ -57,26 +59,28 @@ const ProductModal = ({
 		}
 	};
 
+	
+
 	return (
 		<Modal
 			isOpen={isOpen}
 			onRequestClose={onRequestClose}
 			contentLabel="Add New Product"
-			className="modal w-1/2 h-1/2 bg-gray-100 p-8 rounded-lg"
+			className="modal w-1/2 h-auto bg-gray-100 p-8 rounded-lg"
 			overlayClassName="overlay"
 		>
 			<div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold text-black-600 sm:text-3xl">
-                    Add New Product
-                </h2>
-                <button
-                    onClick={onRequestClose}
-                    className="text-2xl text-gray-500 hover:text-gray-700 focus:outline-none "
-                >
-                    &times;
-                </button>
-            </div>
-			
+				<h2 className="text-2xl font-bold text-black-600 sm:text-3xl">
+					Add New Product
+				</h2>
+				<button
+					onClick={onRequestClose}
+					className="text-2xl text-gray-500 hover:text-gray-700 focus:outline-none "
+				>
+					&times;
+				</button>
+			</div>
+
 			<form onSubmit={handleSubmit}>
 				<div>
 					<input
@@ -121,7 +125,10 @@ const ProductModal = ({
 						required
 					/>
 				</div>
-				<div>
+				{/* <div>
+					<input type="file" onChange={handleFileChange} />
+				</div> */}
+				{/* <div>
 					<input
 						type="text"
 						className="w-full rounded-lg border-yellow-100 mt-3 mb-3 p-4 pe-12 text-sm shadow-sm focus:ring-2 focus:ring-amber-400 focus:outline-none"
@@ -129,7 +136,7 @@ const ProductModal = ({
 						value={imageUrl}
 						onChange={(e) => setImageUrl(e.target.value)}
 					/>
-				</div>
+				</div> */}
 				<div>
 					<input
 						type="text"
@@ -143,6 +150,7 @@ const ProductModal = ({
 					<button
 						type="submit"
 						className="bg-amber-500 w-36 text-white font-bold py-2 px-4 rounded hover:bg-amber-900 hover:text-white transition-transform duration-300 ease-in-out"
+						
 					>
 						Submit
 					</button>

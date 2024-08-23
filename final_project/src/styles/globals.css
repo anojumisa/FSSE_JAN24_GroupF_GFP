@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 226, 232, 240;
+  --background-end-rgb: 226, 232, 240;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 226, 232, 240;
+    --background-end-rgb: 226, 232, 240;
+  }
+}
+
+body {
+  background-color: white;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* styles.css */
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.fantastic-move {
+  animation: slideInFromLeft 1s ease-out forwards;
+}
+
+.fantastic-move-delay {
+  animation: slideInFromLeft 2s ease-out forwards;
+  animation-delay: 0.5s; /* Delay the second image by 0.5 seconds */
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(200%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(100);
+    opacity: 1;
+  }
+}
+
+.fantastic-move-right {
+  animation: slideInFromRight 1s ease-out forwards;
+}
+
+.fantastic-move-delay-right {
+  animation: slideInFromRight 2s ease-out forwards;
+  animation-delay: 0.5s; /* Delay the second image by 0.5 seconds */
+}
+
+.transaction-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.transaction-item {
+  flex: 1;
+  padding: 0 10px;
+}
+
+.transaction-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px; /* Adjust the gap as needed */
+}
+
+@keyframes slideIn {
+  from {
+      transform: translateX(100%);
+      opacity: 0;
+  }
+  to {
+      transform: translateX(0);
+      opacity: 1;
+  }
+}
+
+.testimonial-container {
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.slide-in {
+  animation: slideIn 0.5s forwards;
+}
+
+.transaction-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.transaction-item {
+  flex: 1;
+  padding: 0 10px;
+}
+
+.transaction-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px; /* Adjust the gap as needed */
+}

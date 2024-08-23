@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import LandingNavbar from "../layouts/Landing_Page/Navbar";
-import UserNavbar from "../layouts/Dashboard_User/navbar";
-import SellerNavbar from "../layouts/Dashboard_Seller/navbar";
+// import UserNavbar from "../layouts/Dashboard_User/navbar";
+// import SellerNavbar from "../layouts/Dashboard_Seller/navbar";
 
 
 const getUserRole = (): "guest" | "user" | "seller" => {

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { User } from "../../../../types/user/types"; // Adjust the import path if needed
 
 interface BiodataProps {
-	user: UserType;
-	onUpdate: (updatedUser: UserType) => void;
+	user: User;
+	onUpdate: (updatedUser: User) => void;
 }
 
 interface UserType {
@@ -39,7 +39,7 @@ const Biodata: React.FC<BiodataProps> = ({ user, onUpdate }) => {
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		try {
-			const token = localStorage.getItem("access_token");
+			const token = localStorage.getItem("token");
 
 			if (!token) {
 				throw new Error("No token found in localStorage");
@@ -68,6 +68,12 @@ const Biodata: React.FC<BiodataProps> = ({ user, onUpdate }) => {
 				// Log the image URL to ensure it's correctly formed
 				console.log("Uploaded image URL:", imageUrl);
 			}
+
+			// Ensure the image URL is correctly set
+			if (!imageUrl || !imageUrl.includes("://")) {
+				throw new Error("Invalid image URL");
+			}
+
 			// Update the user with the new image URL
 			const updatedUser = { ...formData, image_url: imageUrl };
 
@@ -89,11 +95,13 @@ const Biodata: React.FC<BiodataProps> = ({ user, onUpdate }) => {
 			console.log("Response data:", responseData);
 
 			if (response.ok) {
-				onUpdate(responseData);
+				const updatedUserData = await response.json();
+				onUpdate(updatedUserData);
 				setIsEditing(false);
 				setError(null); // Clear any previous errors
 			} else {
-				console.error("Failed to update user:", responseData);
+				const errorData = await response.json();
+				console.error("Failed to update user:", errorData);
 				setError(
 					"An error occurred while updating the biodata. Please try again."
 				);
@@ -219,8 +227,8 @@ const Biodata: React.FC<BiodataProps> = ({ user, onUpdate }) => {
 				</form>
 			) : (
 				<div>
-					<div className="bg-gradient-to-r from-amber-400 via-amber-700 to-amber-900 p-4 rounded border border-gray-950 w-6/12">
-                    <div className="bg-gradient-to-r from-amber-900 via-gray-700 to-gray-900 rounded overflow-hidden shadow-lg p-4 ">							{" "}
+					<div className="bg-gradient-to-r from-amber-400 via-amber-700 to-amber-900 p-4 rounded border border-gray-950">
+                    <div className="bg-gradient-to-r from-amber-900 via-gray-700 to-gray-900 rounded overflow-hidden shadow-lg p-4">							{" "}
 							{user.image_url && (
 								<div className="flex justify-center">
 									<img
@@ -250,6 +258,9 @@ const Biodata: React.FC<BiodataProps> = ({ user, onUpdate }) => {
 						>
 							Edit
 						</button>
+					</div>
+					<div>
+						<img src={user.image_url} alt="" />
 					</div>
 				</div>
 			)}

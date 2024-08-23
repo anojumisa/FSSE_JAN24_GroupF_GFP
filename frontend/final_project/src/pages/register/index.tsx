@@ -3,6 +3,7 @@ import router from "next/router";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 interface FormValues {
 	username: string;
@@ -68,7 +69,7 @@ export default function Register() {
 			const finalData = { ...values };
 
 			const response = await fetch(
-				`${process.env.NEXT_PUBLIC_API_URL}/register`,
+				`http://127.0.0.1:5000/register`,
 				{
 					method: "POST",
 					mode: "cors",
@@ -81,6 +82,7 @@ export default function Register() {
 
 			if (!response.ok) {
 				const errorText = await response.text();
+				toast.error('Error:' + {errorText});
 				throw new Error(`Registration failed: ${errorText}`);
 			}
 

@@ -6,6 +6,7 @@ import TransactionList from '../../components/layouts/Dashboard_User/transaction
 import { User, Transaction } from '../../types/user/types';
 import { useRouter } from 'next/router';
 import LogoutButton from '@/components/elements/logoutbuttonuser';
+import toast from 'react-hot-toast';
 
 interface UserDashboardData {
   user: User;
@@ -41,6 +42,7 @@ const Dashboard: React.FC = () => {
         console.log('Response status:', response.status); // Log response status
         if (response.status === 401) {
           console.log('Unauthorized access, redirecting to login');
+          toast.error('Unauthorized access, redirecting to login');
           localStorage.removeItem('access_token'); // If unauthorized, remove token and redirect
           router.push('/login');
           return;

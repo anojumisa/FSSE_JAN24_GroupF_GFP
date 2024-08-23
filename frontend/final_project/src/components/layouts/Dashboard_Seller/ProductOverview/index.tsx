@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ProductOverviewData } from "../../../../types/seller";
+import toast from "react-hot-toast";
 
 interface ProductOverviewProps {
 	overview: ProductOverviewData[];
@@ -79,11 +80,12 @@ const ProductOverview: React.FC<ProductOverviewProps> = ({
 					}
 				);
 
+				const updatedProductData = await response.json();
 				if (response.ok) {
-					const updatedProductData = await response.json();
 					onUpdateProduct(currentProduct.id, updatedProductData);
 					handleCloseModal();
 				} else {
+					toast.error("Error: " + updatedProductData.message);
 					console.error("Failed to update product");
 				}
 			} catch (error) {

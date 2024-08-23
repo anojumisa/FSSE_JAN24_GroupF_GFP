@@ -4,6 +4,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import router from "next/router";
 import Modal from "@/components/fragments/Modal/store_modal";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 interface RegisterForm {
 	seller_full_name: string;
@@ -31,10 +32,7 @@ const personalInfoSchema = Yup.object().shape({
 	email: Yup.string().email("Invalid email format").required("Email required"),
 	password_hash: Yup.string()
 		.required("Password required")
-		.matches(
-			/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
-			"Password must contain at least 8 characters, one uppercase letter, one lowercase letter, and one number"
-		),
+		.min(6, "Password must be at least 6 characters"),
 });
 
 const storeInfoSchema = Yup.object().shape({
@@ -90,7 +88,7 @@ export default function MultiStepForm() {
 			const finalData = { ...formData, ...values };
 
 			const response = await fetch(
-				`${process.env.NEXT_PUBLIC_API_URL}/store_register`,
+				`http://127.0.0.1:5000/store_register`,
 				{
 					method: "POST",
 					mode: "cors",
@@ -103,6 +101,7 @@ export default function MultiStepForm() {
 
 			if (!response.ok) {
 				const errorText = await response.text();
+				toast.error("Error: " + errorText);
 				throw new Error(`Registration failed: ${errorText}`);
 			}
 

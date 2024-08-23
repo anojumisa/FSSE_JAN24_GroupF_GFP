@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import toast from 'react-hot-toast';
 
 const LogoutButton = () => {
   const router = useRouter();
@@ -25,6 +26,7 @@ const LogoutButton = () => {
 
       if (response.ok) {
         localStorage.removeItem('access_token'); // Clear the token from local storage
+        toast.success('Logout successful!');
         router.push('/login'); // Redirect to login page after logout
       } else {
         console.error('Logout failed');

@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import ProductDetails from "./ProductDetails";
 
 interface IParams {
@@ -10,7 +11,7 @@ export async function getServerSideProps(context: any) {
     try {
         console.log("Fetching product with ID:", productId);
 
-        const response = await fetch(`http://localhost:5000/product/${productId}`, {
+        const response = await fetch(`http://127.0.0.1:5000/product/${productId}`, {
             mode: 'cors',
             method: 'GET',
             headers: {
@@ -19,6 +20,7 @@ export async function getServerSideProps(context: any) {
         });
 
         if (!response.ok) {
+            toast.error(`HTTP error! status: ${response.status}`);
             console.error(`HTTP error! status: ${response.status}`);
             return {
                 props: {
@@ -46,6 +48,7 @@ export async function getServerSideProps(context: any) {
             },
         };
     } catch (error) {
+        toast.error(`Error fetching product!`);
         console.error("Error fetching product:", error);
         return {
             props: {

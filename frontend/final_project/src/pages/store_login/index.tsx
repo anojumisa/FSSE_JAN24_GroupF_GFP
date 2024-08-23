@@ -3,6 +3,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import router from "next/router";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 export default function LoginSeller() {
 	interface LoginForm {
@@ -50,6 +51,7 @@ export default function LoginSeller() {
 
 			if (!response.ok) {
 				setFieldError("general", data.message || "Failed to login");
+				toast.error("Error: " + data.message);
 				return;
 			}
 
@@ -63,6 +65,7 @@ export default function LoginSeller() {
 			if (token) {
 				localStorage.setItem("token", token);
 				console.log("Redirecting to Dashboard_Seller...");
+				toast.success("Login successful!");
 				router.push("/Dashboard_Seller");
 			} else {
 				setFieldError("general", "Token is missing in response");

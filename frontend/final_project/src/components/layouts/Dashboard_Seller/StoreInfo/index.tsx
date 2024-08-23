@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { StoreInfo as StoreInfoType } from "../../../../types/seller"; // adjust the path as necessary
+import toast from "react-hot-toast";
 
 interface StoreInfoProps {
 	storeInfo: StoreInfoType | null;
@@ -107,6 +108,7 @@ const StoreInfo: React.FC<StoreInfoProps> = ({
 				setIsEditing(false);
 				setError(null); // Clear any previous errors
 			} else {
+				toast.error("Failed to update store", responseData);
 				console.error("Failed to update store:", responseData);
 				setError(
 					"An error occurred while updating the store data. Please try again."

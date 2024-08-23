@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { User } from "../../../../types/user/types"; // Adjust the import path if needed
+import toast from "react-hot-toast";
 
 interface BiodataProps {
 	user: UserType;
@@ -93,6 +94,7 @@ const Biodata: React.FC<BiodataProps> = ({ user, onUpdate }) => {
 				setIsEditing(false);
 				setError(null); // Clear any previous errors
 			} else {
+				toast.error("Failed to update user:", responseData);
 				console.error("Failed to update user:", responseData);
 				setError(
 					"An error occurred while updating the biodata. Please try again."

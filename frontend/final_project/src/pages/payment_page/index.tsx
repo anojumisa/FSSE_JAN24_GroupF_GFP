@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { User } from '../../types/user/types';
+import toast from 'react-hot-toast';
 
 const PaymentPage: React.FC = () => {
   const [userData, setUserData] = useState<User | null>(null);
@@ -32,6 +33,7 @@ const PaymentPage: React.FC = () => {
         const data = await response.json();
         setUserData(data.user);
       } catch (error) {
+        toast.error(`Error fetching user data: ${error}`);
         console.error('Error fetching user data:', error);
       }
     };

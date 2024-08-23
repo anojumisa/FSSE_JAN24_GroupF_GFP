@@ -1,6 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { FaSignOutAlt } from 'react-icons/fa';
+import toast from "react-hot-toast";
 
 const LogoutButtonUser = () => {
 	const router = useRouter();
@@ -27,8 +28,10 @@ const LogoutButtonUser = () => {
 
 			if (response.ok) {
 				localStorage.removeItem("token");
+				toast.success("Logout successful!");
 				router.push("/store_login");
 			} else {
+				toast.error("Logout failed");
 				console.error("Logout failed");
 			}
 		} catch (error) {

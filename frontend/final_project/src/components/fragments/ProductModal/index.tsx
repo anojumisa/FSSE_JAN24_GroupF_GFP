@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import Modal from "react-modal";
 
 Modal.setAppElement("#__next"); // This is important for accessibility
@@ -51,6 +52,7 @@ const ProductModal = ({
 				onRequestClose(); // Close the modal after successful submission
 			} else {
 				const errorResult = await response.json();
+				toast.error("Error: " + errorResult.message);
 				console.error("Failed to add product:", errorResult.message);
 				console.error("Error details:", errorResult.details);
 			}

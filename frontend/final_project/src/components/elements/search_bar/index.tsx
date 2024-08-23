@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import toast from 'react-hot-toast';
 
 interface SearchBarProps {
     search: string;
@@ -17,10 +18,14 @@ const SearchBar: React.FC<SearchBarProps> = ({ search }) => {
         e.preventDefault();
         try {
             const response = await fetch(`http://127.0.0.1:5000/search?keyword=${searchInput}`);
+
+            const results = await response.json();
+
             if (!response.ok) {
+                toast.error("Error: " + results.message);
                 throw new Error('Network response was not ok');
             }
-            const results = await response.json();
+
             router.push({
                 pathname: '/search',
                 query: { results: JSON.stringify(results), keyword: searchInput },

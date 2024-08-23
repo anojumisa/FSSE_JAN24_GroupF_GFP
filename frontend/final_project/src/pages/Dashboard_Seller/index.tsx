@@ -12,6 +12,7 @@ import {
 	StoreInfo as StoreInfoType,
 } from "../../types/seller"; // Adjust the path as necessary
 import ProductModal from "@/components/fragments/ProductModal";
+import toast from "react-hot-toast";
 
 const Dashboard = () => {
 	const [orders, setOrders] = useState<Order[] | null>(null);
@@ -120,14 +121,15 @@ const Dashboard = () => {
 				}
 			);
 
+			const data = await response.json();
 			if (response.ok) {
-				const data = await response.json();
 				setProducts(
 					products.map((product) =>
 						product.id === id ? data.product : product
 					)
 				);
 			} else {
+				toast.error("Error: " + data.message);
 				console.error("Failed to update product");
 			}
 		} catch (error) {

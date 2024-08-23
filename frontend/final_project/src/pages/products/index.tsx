@@ -3,6 +3,7 @@ import Navbar from "@/components/layouts/Landing_Page/Navbar";
 import ProductCard from "@/components/products/ProductCard";
 import Sidebar from "@/components/layouts/Search_Result/sidebar"; // Adjust the import based on your project structure
 import { shuffleArray } from "@/utils/shuffleArray"; // Import the shuffle function
+import toast from "react-hot-toast";
 
 interface Product {
 	id: string;
@@ -40,6 +41,7 @@ export default function Products() {
 			setFilteredProductItems(shuffledProducts); // Initialize filtered products
 			console.log(data);
 		} catch (error) {
+			toast.error("Error fetching products!");
 			console.error("Error fetching products:", error);
 			setProducts([]);
 			setFilteredProductItems([]);

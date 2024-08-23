@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import toast from "react-hot-toast";
 
 interface LoginValues {
 	email: string;
@@ -28,7 +29,7 @@ const Login = () => {
 
 	const handleLogin = async (values: LoginValues) => {
 		try {
-			const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
+			const response = await fetch(`http://127.0.0.1:5000/login`, {
 				method: "POST",
 				mode: "cors",
 				headers: {
@@ -45,9 +46,11 @@ const Login = () => {
 			if (response.ok && data.access_token) {
 				localStorage.setItem("access_token", data.access_token);
 				console.log("Stored Token:", localStorage.getItem("access_token"));
+				toast.success("Login successful!");
 				router.push("/Dashboard_User");
 			} else {
 				console.error("Login failed:", data.message);
+				toast.error("Error: " + data.message);
 			}
 		} catch (error) {
 			console.error("Login error:", error);

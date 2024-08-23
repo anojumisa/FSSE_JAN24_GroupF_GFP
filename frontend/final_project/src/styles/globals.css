@@ -117,19 +117,3 @@ body {
   animation: slideInFromRight 2s ease-out forwards;
   animation-delay: 0.5s; /* Delay the second image by 0.5 seconds */
 }
-
-.transaction-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.transaction-item {
-  flex: 1;
-  padding: 0 10px;
-}
-
-.transaction-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px; /* Adjust the gap as needed */
-}

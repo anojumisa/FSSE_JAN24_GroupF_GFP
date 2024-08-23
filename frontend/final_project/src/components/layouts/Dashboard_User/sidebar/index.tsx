@@ -28,7 +28,7 @@ const Sidebar = () => {
                 <a href="/pembelian" className="text-gray-700 hover:text-gray-900">Pembelian</a>
               </li>
               <li className="mb-2">
-                <a href="/payment_page" className="text-gray-700 hover:text-gray-900">Menunggu Pembayaran</a>
+                <a href="/menunggu-pembayaran" className="text-gray-700 hover:text-gray-900">Menunggu Pembayaran</a>
               </li>
               <li className="mb-2">
                 <a href="/daftar-transaksi" className="text-gray-700 hover:text-gray-900">Daftar Transaksi</a>

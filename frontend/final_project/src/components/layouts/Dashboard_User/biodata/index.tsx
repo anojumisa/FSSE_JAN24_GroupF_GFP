@@ -122,7 +122,7 @@ const Biodata: React.FC<BiodataProps> = ({ user, onUpdate }) => {
 			{isEditing ? (
 				<form
 					onSubmit={handleSubmit}
-					className="space-y-4 bg-amber-400 p-4 rounded-lg w-1/2"
+					className="space-y-4 bg-amber-400 p-4 rounded-lg"
 				>
 					{error && <p className="text-red-500">{error}</p>}
 					<div className="flex flex-col space-y-4">

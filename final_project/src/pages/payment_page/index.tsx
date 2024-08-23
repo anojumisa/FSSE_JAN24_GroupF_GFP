@@ -175,12 +175,12 @@ const PaymentPage: React.FC<PaymentPageProps> = ({ initialCartItems = [] }) => {
                 {/* Delivery Address */}
                 <div className="mb-8">
                     <h3 className="text-xl font-semibold mb-2">Delivery Address</h3>
-                    <div className="border border-gray-200 p-4 rounded-lg bg-gray-50">
+                    <div className="border border-gray-200 p-4 rounded-lg bg-amber-400">
                         <p className="text-lg">
                             {userData?.first_name} {userData?.last_name}
                         </p>
-                        <p className="text-gray-600">{userData?.address}</p>
-                        <p className="text-gray-600">
+                        <p className="text-gray-900">{userData?.address}</p>
+                        <p className="text-gray-900">
                             {userData?.city}, {userData?.state} - {userData?.zip_code}
                         </p>
                     </div>
@@ -189,7 +189,7 @@ const PaymentPage: React.FC<PaymentPageProps> = ({ initialCartItems = [] }) => {
                 {/* Order Summary */}
                 <div className="mb-8">
                     <h3 className="text-xl font-semibold mb-2">Order Summary</h3>
-                    <div className="border border-gray-200 p-4 rounded-lg bg-gray-50">
+                    <div className="border border-gray-200 p-4 rounded-lg bg-amber-400">
                         {cartItems && cartItems.length > 0 ? (
                             cartItems.map((item, index) => (
                                 <div
@@ -286,7 +286,7 @@ const PaymentPage: React.FC<PaymentPageProps> = ({ initialCartItems = [] }) => {
 
                 <button
                     onClick={handleConfirmPayment}
-                    className="bg-blue-500 text-white py-2 px-4 rounded-lg w-full hover:bg-blue-600"
+                    className="bg-amber-400 text-slate-950 py-2 px-4 rounded-lg w-full hover:bg-amber-500 text-xl font-semibold"
                     disabled={paymentMethod === "mbanking" && !selectedBank}
                 >
                     Confirm Order
@@ -302,7 +302,7 @@ const PaymentPage: React.FC<PaymentPageProps> = ({ initialCartItems = [] }) => {
                             ></p>
                             <button
                                 onClick={closeModal}
-                                className="bg-green-500 text-white py-2 px-4 rounded-lg w-full hover:bg-green-600"
+                                className="bg-amber-400 text-white py-2 px-4 rounded-lg w-full hover:bg-amber-500"
                             >
                                 Close
                             </button>

@@ -36,7 +36,7 @@ const testimonialsData = [
 		rating: "Rating: ⭐⭐⭐⭐⭐",
 		name: "Deadpool",
 		testimonial:
-			"I recently used Localbites to order some local delicacies while visiting Yogyakarta, and I couldn’t be happier with the experience! The website was super easy to navigate, and I found a wide variety of local treats to choose from. The checkout process was straightforward, and I appreciated the clear instructions for bank transfer payments. My order arrived promptly, and everything was fresh and delicious. I love how LocalBites supports local businesses and promotes sustainability. Highly recommended!",
+			'"I recently used Localbites to order some local delicacies while visiting Yogyakarta, and I couldn’t be happier with the experience! The website was super easy to navigate, and I found a wide variety of local treats to choose from. The checkout process was straightforward, and I appreciated the clear instructions for bank transfer payments. My order arrived promptly, and everything was fresh and delicious. I love how LocalBites supports local businesses and promotes sustainability. Highly recommended!"',
 		image: "Deadpool.jpg",
 		origin: "Canada",
 	},
@@ -44,7 +44,7 @@ const testimonialsData = [
 		rating: "Rating: ⭐⭐⭐⭐⭐",
 		name: "Billie Eilish",
 		testimonial:
-			"LocalBites has quickly become my go-to for buying local food souvenirs. I love the diverse selection of products from different regions and the convenience of having them delivered straight to my door. The customer service is top-notch—they were quick to respond when I had a question about my order. The bank transfer payment option was straightforward, and I felt secure throughout the process. I appreciate how LocalBites makes it easy to support local producers and discover unique foods. A fantastic experience overall!",
+			'"LocalBites has quickly become my go-to for buying local food souvenirs. I love the diverse selection of products from different regions and the convenience of having them delivered straight to my door. The customer service is top-notch—they were quick to respond when I had a question about my order. The bank transfer payment option was straightforward, and I felt secure throughout the process. I appreciate how LocalBites makes it easy to support local producers and discover unique foods. A fantastic experience overall!"',
 		image: "Billie_Eilish.jpg",
 		origin: "USA",
 	},
@@ -52,7 +52,7 @@ const testimonialsData = [
 		rating: "Rating: ⭐⭐⭐⭐⭐",
 		name: "Kaesang Pangarep",
 		testimonial:
-			"I’m so impressed with Localbites! As someone who travels frequently, I always look for ways to bring back local flavors for my friends and family. LocalBites makes this so easy with their seamless online shopping experience. The product descriptions are detailed, and I love the featured store section that highlights eco-friendly businesses. I used the bank transfer payment option, and it was hassle-free with clear instructions. My order arrived on time, and the quality of the products exceeded my expectations. I’ll definitely be using LocalBites again!",
+			'"I’m so impressed with Localbites! As someone who travels frequently, I always look for ways to bring back local flavors for my friends and family. LocalBites makes this so easy with their seamless online shopping experience. The product descriptions are detailed, and I love the featured store section that highlights eco-friendly businesses. I used the bank transfer payment option, and it was hassle-free with clear instructions. My order arrived on time, and the quality of the products exceeded my expectations. I’ll definitely be using LocalBites again!"',
 		image: "kaesang.jpg",
 		origin: "Solo",
 	},

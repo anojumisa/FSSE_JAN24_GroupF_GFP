@@ -34,7 +34,7 @@ const PaymentInstructionPage: React.FC = () => {
                 <h2 className="text-2xl font-bold mb-6 text-center">Payment Instructions</h2>
                 <div className="mb-8">
                     <h3 className="text-xl font-semibold mb-2">Order Summary</h3>
-                    <div className="border border-gray-200 p-4 rounded-lg bg-gray-50">
+                    <div className="border border-black p-4 rounded-lg bg-amber-400">
                         <p>Payment Method: {orderData.payment_method.toUpperCase()}</p>
                         <p>Delivery Option: {orderData.delivery_option.toLocaleUpperCase()}</p>
                         <p>Total Price: <span className="font-bold underline text-red-700">Rp{orderData.total_price}</span></p>
@@ -53,7 +53,7 @@ const PaymentInstructionPage: React.FC = () => {
                 </div>
                 <button
                     onClick={handleBackToDashboard}
-                    className="bg-blue-500 text-white py-2 px-4 rounded-lg w-full hover:bg-blue-600"
+                    className="bg-amber-400 text-slate-950 py-2 px-4 border border-black rounded-lg w-full hover:bg-amber-500"
                 >
                     Back to Dashboard
                 </button>

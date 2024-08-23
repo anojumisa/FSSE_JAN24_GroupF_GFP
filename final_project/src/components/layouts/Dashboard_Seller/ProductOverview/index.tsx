@@ -29,7 +29,7 @@ const ProductOverview: React.FC<ProductOverviewProps> = ({
 	return (
 		<div className="bg-slate-950 text-amber-400 p-4 rounded">
 			<h2 className="text-xl text-white font-semibold mb-4">Product Overview</h2>
-			<table className="min-w-full bg-white">
+			<table className="min-w-full bg-slate-950">
 				<thead>
 					<tr>
 						<th className="py-2 px-4 border-b border-gray-200">ID</th>
@@ -46,15 +46,15 @@ const ProductOverview: React.FC<ProductOverviewProps> = ({
 							<td className="py-2 px-4 border-b border-gray-200">{product.name}</td>
 							<td className="py-2 px-4 border-b border-gray-200">{product.stock_quantity}</td>
 							<td className="py-2 px-4 border-b border-gray-200">{product.price}</td>
-							<td className="py-2 px-4 border-b border-gray-200">
+							<td className="py-2 px-4 border-b border-gray-200 flex justify-center">
 								<button
-									className="bg-lime-400 text-slate-950 px-2 py-1 rounded mr-2 hover:bg-lime-600 hover:text-white"
+									className="bg-amber-400 text-slate-950 px-2 py-1 rounded mr-2 hover:bg-amber-500 hover:text-white"
 									onClick={() => handleOpenModal(product)}
 								>
 									Update
 								</button>
 								<button
-									className="bg-orange-500 text-white px-2 py-1 rounded hover:bg-orange-600"
+									className="bg-amber-600 text-white px-2 py-1 rounded hover:bg-orange-600"
 									onClick={() => onRemoveProduct(product.id)}
 								>
 									Remove
@@ -66,10 +66,11 @@ const ProductOverview: React.FC<ProductOverviewProps> = ({
 			</table>
 
 			{isModalOpen && currentProduct && (
-				<div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-					<div className="bg-white p-4 rounded">
-						<h2 className="text-xl font-semibold mb-4">Update Product</h2>
-						<label>
+				<div className="fixed inset-0 flex items-center justify-center bg-yellow-700 bg-opacity-50">
+				<div className="bg-slate-900 p-4 rounded-3xl border border-white w-4/12">
+					<h2 className="text-xl font-semibold mb-4">Update Product</h2>
+					<div className="flex flex-col space-y-4">
+						<label className="flex flex-col">
 							Product Name:
 							<input
 								type="text"
@@ -78,10 +79,10 @@ const ProductOverview: React.FC<ProductOverviewProps> = ({
 								onChange={(e) =>
 									setCurrentProduct({ ...currentProduct, name: e.target.value })
 								}
-								className="border p-2 rounded mb-2"
+								className="border p-2 rounded w-full text-black"
 							/>
 						</label>
-						<label>
+						<label className="flex flex-col">
 							Quantity:
 							<input
 								type="number"
@@ -93,10 +94,10 @@ const ProductOverview: React.FC<ProductOverviewProps> = ({
 										stock_quantity: parseInt(e.target.value, 10),
 									})
 								}
-								className="border p-2 rounded mb-2"
+								className="border p-2 rounded w-full text-black"
 							/>
 						</label>
-						<label>
+						<label className="flex flex-col">
 							Price:
 							<input
 								type="number"
@@ -108,28 +109,29 @@ const ProductOverview: React.FC<ProductOverviewProps> = ({
 										price: parseFloat(e.target.value),
 									})
 								}
-								className="border p-2 rounded mb-2"
+								className="border p-2 rounded w-full text-black"
 							/>
 						</label>
-						<div className="flex justify-end">
-							<button
-								className="bg-gray-500 text-white px-2 py-1 rounded mr-2"
-								onClick={handleCloseModal}
-							>
-								Cancel
-							</button>
-							<button
-								className="bg-blue-500 text-white px-2 py-1 rounded"
-								onClick={() => {
-									onUpdateProduct(currentProduct.id, currentProduct);
-									handleCloseModal();
-								}}
-							>
-								Save
-							</button>
-						</div>
+					</div>
+					<div className="flex justify-center mt-4 p-5 gap-10">
+						<button
+							className="bg-gray-500 text-white px-2 py-1 rounded w-4/12 hover:bg-gray-600"
+							onClick={handleCloseModal}
+						>
+							Cancel
+						</button>
+						<button
+							className="bg-amber-400 text-black px-2 py-1 rounded w-4/12 hover:bg-amber-500 hover:text-white"
+							onClick={() => {
+								onUpdateProduct(currentProduct.id, currentProduct);
+								handleCloseModal();
+							}}
+						>
+							Save
+						</button>
 					</div>
 				</div>
+			</div>
 			)}
 		</div>
 	);

@@ -44,7 +44,7 @@ export default function Testimonials({ testimonials = [] }: TestimonialsProps) {
             </h1>
             <div className={`testimonial-container ${animate ? "slide-in" : ""} text-center bg-slate-900 p-8 rounded-3xl shadow-2xl w-8/12`}>
                 <p className="text-yellow-600 text-3xl mb-4">{currentTestimonial.rating}</p>
-                <h1 className="text-2xl text-amber-400 leading-relaxed text-center font-semibold mb-4 w-7/12 mx-auto">
+                <h1 className="text-2xl text-amber-400 leading-relaxed text-center font-semibold mb-4 w-7/12 mx-auto italic">
                     {currentTestimonial.testimonial}
                 </h1>
                 <div className="flex justify-center gap-4 items-center">

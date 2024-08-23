@@ -14,6 +14,7 @@ export interface User {
   
   export interface Transaction {
     id: number;
-    amount: number;
-    date: string; 
+    total_price: number;
+    created_at: string; 
+    status: string;
   }

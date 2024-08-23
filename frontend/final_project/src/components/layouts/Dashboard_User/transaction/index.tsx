@@ -5,10 +5,11 @@ interface TransactionListProps {
 }
 
 const TransactionList: React.FC<TransactionListProps> = ({ transaction }) => (
-  <div className="transaction border p-4 mb-4">
-    <p>Transaction ID: {transaction.id}</p>
-    <p>Amount: {transaction.amount}</p>
-    <p>Date: {transaction.date}</p>
+  <div className="transaction-container border p-4 mb-4 bg-amber-400">
+    <div className="transaction-item">Transaction ID: {transaction.id}</div>
+    <div className="transaction-item">Amount: {transaction.total_price}</div>
+    <div className="transaction-item">Date: {transaction.created_at}</div>
+    <div> Status: {transaction.status}</div>
   </div>
 );
 

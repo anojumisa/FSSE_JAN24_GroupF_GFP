@@ -114,7 +114,7 @@ const Biodata: React.FC<BiodataProps> = ({ user, onUpdate }) => {
 			{isEditing ? (
 				<form
 					onSubmit={handleSubmit}
-					className="space-y-4 bg-amber-400 p-4 rounded-lg"
+					className="space-y-4 bg-amber-400 p-4 rounded-lg w-1/2"
 				>
 					{error && <p className="text-red-500">{error}</p>}
 					<div className="flex flex-col space-y-4">
@@ -219,8 +219,8 @@ const Biodata: React.FC<BiodataProps> = ({ user, onUpdate }) => {
 				</form>
 			) : (
 				<div>
-					<div className="bg-gradient-to-r from-amber-400 via-amber-700 to-amber-900 p-4 rounded border border-gray-950">
-                    <div className="bg-gradient-to-r from-amber-900 via-gray-700 to-gray-900 rounded overflow-hidden shadow-lg p-4">							{" "}
+					<div className="bg-gradient-to-r from-amber-400 via-amber-700 to-amber-900 p-4 rounded border border-gray-950 w-6/12">
+                    <div className="bg-gradient-to-r from-amber-900 via-gray-700 to-gray-900 rounded overflow-hidden shadow-lg p-4 ">							{" "}
 							{user.image_url && (
 								<div className="flex justify-center">
 									<img
